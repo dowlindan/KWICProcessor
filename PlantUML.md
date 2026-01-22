@@ -5,45 +5,37 @@ skinparam classAttributeIconSize 0
 ' Abstract File Parser
 ' =====================
 abstract class AbstractFileParser {
-  #file : File
-  +AbstractFileParser()
-  +openFile(fileName : String) : void
-  +closeFile() : void
-  +getSentencesAsArray() : List<String>
+  #filePath : String
+  +setFilePath(filePath : String) : void
+  {abstract} +getSentencesAsList() : List<String>
 }
 
 ' =====================
 ' Concrete File Parser
 ' =====================
 class PlaintextFileParser {
-  +getSentencesAsArray() : List<String>
+  +getSentencesAsList() : List<String>
 }
 
 ' =====================
 ' Sorting Strategy
 ' =====================
 abstract class SortingStrategy {
-  #input : Collection<String>
-  +SortingStrategy(input : Collection<String>)
-  +sort(): List<String>
+  {abstract} +sort(Collection<String>): Collection<String>
 }
 
 class AlphabetizedSorter {
-  +sort(): List<String>
+  +sort(Collection<String>): Collection<String>
 }
 
 ' =====================
 ' Abstract Sentences Processor
 ' =====================
 abstract class AbstractSentencesProcessor {
-  -inputSentences : List<String>
-  -sortingStrategy : SortingStrategy
-  +AbstractSentencesProcessor(
-      inputSentences : List<String>,
-      sortingStrategy : SortingStrategy
-    )
-  +getInputSentences() : List<String>
-  +getProcessedOutput() : List<String>
+  #inputSentences : List<String>
+  #sortingStrategy : SortingStrategy
+  +AbstractSentencesProcessor(inputSentences : List<String>, sortingStrategy : SortingStrategy)
+  {abstract} +getProcessedOutput() : List<String>
 }
 
 ' =====================
@@ -67,7 +59,9 @@ class IndexGeneration {
 ' Input / Output Strategies
 ' =====================
 abstract class InputStrategy {
-  +getCommand() : String
+  +open(): void
+  +close(): void
+  {abstract} +getCommand() : String
 }
 
 class ConsoleInput {
@@ -75,7 +69,7 @@ class ConsoleInput {
 }
 
 abstract class OutputStrategy {
-  +display(output : String) : void
+  {abstract} +display(output : String) : void
 }
 
 class ConsoleOutput {
@@ -85,10 +79,11 @@ class ConsoleOutput {
 ' =====================
 ' Commands Enum
 ' =====================
-enum Commands {
-  KWIC
-  SEARCH
-  INDEX
+class Commands {
+  {static} +String KWIC
+  {static} +String SEARCH
+  {static} +String INDEX
+  {static} + String QUIT
 }
 
 ' =====================
@@ -97,6 +92,10 @@ enum Commands {
 class KWICDriver {
   -inputStrategy : InputStrategy
   -outputStrategy : OutputStrategy
+  +KWICDriver(inputStrategy: InputStratgy, outputStrategy: OutputStrategy)
+  -sentences : List<String>
+  +loadFile(String filename)
+  -displayUsage(): void
   +run() : void
 }
 
@@ -125,12 +124,12 @@ Main --> KWICDriver : starts
 
 KWICDriver --> Commands : uses
 
-KWICDriver --> InputStrategy : uses
-KWICDriver --> OutputStrategy : uses
+KWICDriver --o InputStrategy : uses
+KWICDriver --o OutputStrategy : uses
 
-KWICDriver --> AbstractFileParser : selects parser\nbased on file ext
-KWICDriver --> AbstractSentencesProcessor : selects processor\nbased on command
+KWICDriver --o AbstractFileParser : selects parser\nbased on file ext
+KWICDriver --o AbstractSentencesProcessor : selects processor\nbased on command
 
-AbstractSentencesProcessor --> SortingStrategy : uses
+AbstractSentencesProcessor --o SortingStrategy : uses
 
 @enduml
