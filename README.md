@@ -7,9 +7,19 @@ This system currently only accepts plain text files containing sets of sentences
 
 ## Getting started
 
+Notes for the TA: 
+- This was developed and compiled in WSL Ubuntu with the latest java version.
+- ./edu/drexel/se311/kwic/Main is the entrypoint
+
 ```
 java -cp out edu.drexel.se311.kwic.Main ./inputs/sample.txt
 ``` 
+or 
+```
+java -cp out ./edu/drexel/se311/kwic/Main ./inputs/sample.txt
+
+```
+
 should work out of the box.
 
 To run the system, from the root directory:
