@@ -2,37 +2,76 @@
 skinparam classAttributeIconSize 0
 
 ' =====================
+' Line Representation
+' =====================
+class Line {
+  -content : String
+  -lineNumber : int
+  +Line(content : String, lineNumber : int)
+  +getContent() : String
+  +getLineNumber() : int
+}
+
+' =====================
 ' Abstract File Parser
 ' =====================
 abstract class AbstractFileParser {
   #filePath : String
+  #textParser : AbstractTextParser
+  +AbstractFileParser(textParser: AbstractTextParser)
   +setFilePath(filePath : String) : void
   {abstract} +getSentencesAsList() : List<String>
+  {abstract} +getSentencesAsLines() : List<Line>
+}
+
+' =====================
+' Abstract Text Parser
+' =====================
+abstract class AbstractTextParser {
+  {abstract} +parseSentencesAsList(String rawText) : List<String>
+  {abstract} +parseSentencesAsLines(String rawText) : List<Line>
+}
+
+' =====================
+' Concrete Text Parsers
+' =====================
+class NewlineTextParser {
+  +parseSentencesAsList(String rawText) : List<String>
+  +parseSentencesAsLines(String rawText) : List<Line>
+}
+
+class SentenceTextParser {
+  +parseSentencesAsList(String rawText) : List<String>
+  +parseSentencesAsLines(String rawText) : List<Line>
 }
 
 ' =====================
 ' Concrete File Parser
 ' =====================
 class PlaintextFileParser {
+  +PlaintextFileParser(textParser: AbstractTextParser)
   +getSentencesAsList() : List<String>
+  +getSentencesAsLines() : List<Line>
 }
 
 ' =====================
 ' Sorting Strategy
 ' =====================
 abstract class SortingStrategy {
-  {abstract} +sort(Collection<String>): Collection<String>
+  {abstract} +sort(List<String>) : List<String>
+  {abstract} +sort(List<Line>) : List<Line>
 }
 
 class AlphabetizedSorter {
-  +sort(Collection<String>): Collection<String>
+  +sort(List<String>) : List<String>
+  +sort(List<Line>) : List<Line>
 }
 
 ' =====================
 ' Abstract Sentences Processor
 ' =====================
 abstract class AbstractSentencesProcessor {
-  #inputSentences : List<String>
+  #inputLines : List<Line>
   #sortingStrategy : SortingStrategy
   +AbstractSentencesProcessor(inputSentences : List<String>, sortingStrategy : SortingStrategy)
   {abstract} +getProcessedOutput() : List<String>
@@ -42,15 +81,18 @@ abstract class AbstractSentencesProcessor {
 ' Concrete Sentences Processors
 ' =====================
 class KWICProcessor {
-  -sentences : List<LinkedList<String>>
+  -circularShifts : List<LinkedList<String>>
+  +KWICProcessor(inputSentences : List<String>, sortingStrategy : SortingStrategy)
   +getProcessedOutput() : List<String>
 }
 
 class KeywordSearch {
+  +KeywordSearch(inputSentences : List<String>, sortingStrategy : SortingStrategy)
   +getProcessedOutput() : List<String>
 }
 
 class IndexGeneration {
+  +IndexGeneration(inputSentences : List<String>, sortingStrategy : SortingStrategy)
   #wordIndexMap : Map<String, List<Integer>>
   +getProcessedOutput() : List<String>
 }
@@ -59,12 +101,14 @@ class IndexGeneration {
 ' Input / Output Strategies
 ' =====================
 abstract class InputStrategy {
-  +open(): void
-  +close(): void
+  +open() : void
+  +close() : void
   {abstract} +getCommand() : String
 }
 
 class ConsoleInput {
+  +open() : void
+  +close() : void
   +getCommand() : String
 }
 
@@ -83,7 +127,7 @@ class Commands {
   {static} +String KWIC
   {static} +String SEARCH
   {static} +String INDEX
-  {static} + String QUIT
+  {static} +String QUIT
 }
 
 ' =====================
@@ -92,10 +136,10 @@ class Commands {
 class KWICDriver {
   -inputStrategy : InputStrategy
   -outputStrategy : OutputStrategy
-  +KWICDriver(inputStrategy: InputStratgy, outputStrategy: OutputStrategy)
-  -sentences : List<String>
-  +loadFile(String filename)
-  -displayUsage(): void
+  -sentences : List<Line>
+  +KWICDriver(inputStrategy : InputStrategy, outputStrategy : OutputStrategy)
+  +loadFile(filename : String)
+  -displayUsage() : void
   +run() : void
 }
 
@@ -107,6 +151,9 @@ class Main {
 ' Inheritance
 ' =====================
 AbstractFileParser <|-- PlaintextFileParser
+
+AbstractTextParser <|-- NewlineTextParser
+AbstractTextParser <|-- SentenceTextParser
 
 AbstractSentencesProcessor <|-- KWICProcessor
 AbstractSentencesProcessor <|-- KeywordSearch
@@ -130,6 +177,28 @@ KWICDriver --o OutputStrategy : uses
 KWICDriver --o AbstractFileParser : selects parser\nbased on file ext
 KWICDriver --o AbstractSentencesProcessor : selects processor\nbased on command
 
+AbstractFileParser --o AbstractTextParser : has
+
+AbstractSentencesProcessor --o Line : aggregates
 AbstractSentencesProcessor --o SortingStrategy : uses
 
 @enduml
+
+'''
+' Accommodation for future change 1: input format changes:
+'   Using strategy pattern for file parsing, adding CsvFileParser, etc.
+'   Which strategy to used is determined on file extension.
+'
+' Accommodation for future change 2: Index Generation Policy changes
+' such as filtering of stop words:
+'   Extending the IndexGeneration class, to make it more complex, and passing of new fields to
+'   AbstractSentencesProcessor, such as keywords, stopwords, etc.
+'
+' Accommodation for future change 3: Alphabetizing Policy Changes to user-selectable:
+'   Creation of new SortingStrategy child class, and a new process in KWICDriver that
+'   allows command input to specify how to sort
+'
+' Accommodation for future change 4: Output Method Changes:
+'   New child classes for output (and input) strategy classes. For example, HTMLOutput
+'   would be responsible for wrapping the text in HTML.
+'''
