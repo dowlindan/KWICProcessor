@@ -6,6 +6,7 @@ import edu.drexel.se311.kwic.line.Line;
 import edu.drexel.se311.kwic.sentenceprocessing.*;
 import edu.drexel.se311.kwic.sorting.*;
 import edu.drexel.se311.kwic.textparsing.NewlineTextParser;
+import java.util.ArrayList;
 import java.util.List;
 
 public class KWICDriver {
@@ -59,8 +60,9 @@ public class KWICDriver {
             } else if (command.startsWith(Commands.KEYWORD_SEARCH)) {
                 System.out.println("Keyword search command received: " + command);
                 String keyword = command.substring(Commands.KEYWORD_SEARCH.length()).trim();
-                this.lines.add(0, new Line(keyword, -1)); // Add keyword as first line
-                processor = new KeywordSearch(this.lines, new AlphabeticSorter());
+                List<Line> linesWithKeyword = new ArrayList<>(this.lines);
+                linesWithKeyword.add(0, new Line(keyword, -1)); // Add keyword as first line
+                processor = new KeywordSearch(linesWithKeyword, new AlphabeticSorter());
             } else if (Commands.INDEX_GENERATION.equals(command)) {
                 processor = new IndexGeneration(this.lines, new AlphabeticSorter());
             } else if (Commands.QUIT.equals(command)) {
