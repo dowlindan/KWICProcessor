@@ -1,6 +1,9 @@
 package edu.drexel.se311.kwic.sorting;
 
-import java.util.Collection;
+import edu.drexel.se311.kwic.line.Line;
+import java.util.List;
+
 public abstract class SortingStrategy {
-    public abstract Collection<String> sort(Collection<String> strings);
+    public abstract List<String> sort(List<String> strings);
+    public abstract List<Line> sortLines(List<Line> lines);
 }

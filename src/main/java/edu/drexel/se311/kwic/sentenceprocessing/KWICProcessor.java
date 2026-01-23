@@ -1,16 +1,48 @@
 package edu.drexel.se311.kwic.sentenceprocessing;
 
+import edu.drexel.se311.kwic.line.Line;
 import edu.drexel.se311.kwic.sorting.SortingStrategy;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 public class KWICProcessor extends AbstractSentencesProcessor {
-    public KWICProcessor(List<String> inputSentences, SortingStrategy sortingStrategy) {
-        super(inputSentences, sortingStrategy);
+    private List<LinkedList<String>> circularShifts;
+    private final static String DELIMETER = " ";
+    private final static String HEADER = "Index | Circular Shifted Lines | Original Line Index";
+
+    public KWICProcessor(List<Line> inputLines, SortingStrategy sortingStrategy) {
+        super(inputLines, sortingStrategy);
+        circularShifts = new LinkedList<>();
     }
 
     @Override
     public List<String> getProcessedOutput() {
-        // Implementation for KWIC processing would go here
-        return this.inputSentences; // TODO Placeholder return
+        List<String> processedOutput = new ArrayList<>();
+        List<Line> shiftedLines = new ArrayList<>();
+
+        for (Line line : this.inputLines) {
+            String[] words = line.getContent().split(DELIMETER);
+            LinkedList<String> wordsLinkedList = new LinkedList<>(Arrays.asList(words));
+
+            List<Line> circularShiftsForLine = new ArrayList<>();
+
+            circularShifts.add(new LinkedList<>(wordsLinkedList));
+            circularShiftsForLine.add(new Line(String.join(" ", wordsLinkedList), line.getLineNumber()));
+
+            for (int i = 0; i < words.length-1; i++) {
+                String firstWord = wordsLinkedList.removeFirst();
+                wordsLinkedList.addLast(firstWord);
+                circularShiftsForLine.add(new Line(String.join(" ", wordsLinkedList), line.getLineNumber()));
+            }
+            shiftedLines.addAll(circularShiftsForLine);
+        }
+        shiftedLines = sortingStrategy.sortLines(shiftedLines);
+        for (int i = 0; i < shiftedLines.size(); i++) {
+            processedOutput.add(i+1 + " | " + shiftedLines.get(i).getContent() + " | " + shiftedLines.get(i).getLineNumber());
+        }
+        processedOutput.add(0, HEADER);
+        return processedOutput;
     }
 }

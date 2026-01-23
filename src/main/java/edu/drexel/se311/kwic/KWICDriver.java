@@ -2,15 +2,16 @@ package edu.drexel.se311.kwic;
 
 import edu.drexel.se311.kwic.fileparsing.*;
 import edu.drexel.se311.kwic.io.*;
-import edu.drexel.se311.kwic.sorting.*;
+import edu.drexel.se311.kwic.line.Line;
 import edu.drexel.se311.kwic.sentenceprocessing.*;
-
+import edu.drexel.se311.kwic.sorting.*;
+import edu.drexel.se311.kwic.textparsing.NewlineTextParser;
 import java.util.List;
 
 public class KWICDriver {
     private InputStrategy inputStrategy;
     private OutputStrategy outputStrategy; 
-    private List<String> sentences;
+    private List<Line> lines;
 
     public KWICDriver(InputStrategy inputStrategy, OutputStrategy outputStrategy) {
         this.inputStrategy = inputStrategy;
@@ -20,7 +21,7 @@ public class KWICDriver {
     public int loadFile(String filename) {
         AbstractFileParser parser;
         if (filename.endsWith(".txt")) {
-            parser = new PlaintextFileParser();
+            parser = new PlaintextFileParser(new NewlineTextParser());
         } else {
             outputStrategy.display("Unsupported file format: " + filename);
             return 1;
@@ -29,7 +30,7 @@ public class KWICDriver {
         parser.setFilePath(filename);
         
         try {
-            this.sentences = parser.getSentencesAsList();
+            this.lines = parser.getSentencesAsLines();
             return 0;
         } catch (Exception e) {
             outputStrategy.display("Error reading file: " + e.getMessage());
@@ -43,7 +44,7 @@ public class KWICDriver {
     }
 
     public void run() {
-        if (this.sentences == null || this.sentences.isEmpty()) {
+        if (this.lines == null || this.lines.isEmpty()) {
             outputStrategy.display("No sentences to process.");
             return;
         }
@@ -52,13 +53,16 @@ public class KWICDriver {
         displayUsage();
         AbstractSentencesProcessor processor;
         while (true) {
-            String command = inputStrategy.getCommand().toLowerCase();
+            String command = inputStrategy.getCommand();
             if (Commands.KWIC.equals(command)) {
-                processor = new KWICProcessor(this.sentences, new AlphabeticSorter());
-            } else if (Commands.KEYWORD_SEARCH.equals(command)) {
-                processor = new KeywordSearch(this.sentences, new AlphabeticSorter());
+                processor = new KWICProcessor(this.lines, new AlphabeticSorter());
+            } else if (command.startsWith(Commands.KEYWORD_SEARCH)) {
+                System.out.println("Keyword search command received: " + command);
+                String keyword = command.substring(Commands.KEYWORD_SEARCH.length()).trim();
+                this.lines.add(0, new Line(keyword, -1)); // Add keyword as first line
+                processor = new KeywordSearch(this.lines, new AlphabeticSorter());
             } else if (Commands.INDEX_GENERATION.equals(command)) {
-                processor = new IndexGeneration(this.sentences, new AlphabeticSorter());
+                processor = new IndexGeneration(this.lines, new AlphabeticSorter());
             } else if (Commands.QUIT.equals(command)) {
                 break;
             } else {
