@@ -20,7 +20,7 @@ public class KeywordSearch extends AbstractSentencesProcessor {
                 sentencesWithKeyword++;
                 String outputLine = "";
                 for (String word : this.inputLines.get(i).getContent().split(" ")) {
-                    if (word.equalsIgnoreCase(keyword)) {
+                    if (word.equals(keyword)) {
                         outputLine += "\033[1m*" + word + "*\033[0m ";
                     } else {
                         outputLine += word + " ";
