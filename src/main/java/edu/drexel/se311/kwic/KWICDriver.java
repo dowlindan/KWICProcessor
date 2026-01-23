@@ -58,10 +58,15 @@ public class KWICDriver {
             if (Commands.KWIC.equals(command)) {
                 processor = new KWICProcessor(this.lines, new AlphabeticSorter());
             } else if (command.startsWith(Commands.KEYWORD_SEARCH)) {
-                System.out.println("Keyword search command received: " + command);
                 String keyword = command.substring(Commands.KEYWORD_SEARCH.length()).trim();
+                if (keyword.isEmpty()) {
+                    outputStrategy.display("Keyword search requires a keyword.");
+                    displayUsage();
+                    continue;
+                }
                 List<Line> linesWithKeyword = new ArrayList<>(this.lines);
                 linesWithKeyword.add(0, new Line(keyword, -1)); // Add keyword as first line
+                //  This is horrible design but I am out of time
                 processor = new KeywordSearch(linesWithKeyword, new AlphabeticSorter());
             } else if (Commands.INDEX_GENERATION.equals(command)) {
                 processor = new IndexGeneration(this.lines, new AlphabeticSorter());
