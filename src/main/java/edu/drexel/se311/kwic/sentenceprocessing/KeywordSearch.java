@@ -20,13 +20,13 @@ public class KeywordSearch extends AbstractSentencesProcessor {
                 sentencesWithKeyword++;
                 String outputLine = "";
                 for (String word : this.inputLines.get(i).getContent().split(" ")) {
-                    if (word.equals(keyword)) {
+                    if (word.contains(keyword)) {
                         outputLine += "\033[1m*" + word + "*\033[0m ";
                     } else {
                         outputLine += word + " ";
                     }
                 }
-                processedOutput.add(sentencesWithKeyword + " " + outputLine.trim());
+                processedOutput.add(sentencesWithKeyword + " " + outputLine);
             }
         }
         processedOutput.add(0, sentencesWithKeyword + " sentence(s) found containing the keyword: " + keyword);
