@@ -12,11 +12,27 @@ import java.util.List;
 public class KWICDriver {
     private InputStrategy inputStrategy;
     private OutputStrategy outputStrategy; 
+    private SortingStrategy sortingStrategy;
+    private boolean filterWords;
+    private List<String> trivialWords;
+
     private List<Line> lines;
 
-    public KWICDriver(InputStrategy inputStrategy, OutputStrategy outputStrategy) {
+    public KWICDriver(InputStrategy inputStrategy, OutputStrategy outputStrategy, SortingStrategy sortingStrategy, 
+        boolean filterWords, List<String> trivialWords) {
         this.inputStrategy = inputStrategy;
         this.outputStrategy = outputStrategy;
+        this.sortingStrategy = sortingStrategy;
+        this.filterWords = filterWords;
+        this.trivialWords = trivialWords;
+    }
+
+    // public KWICDriver(String configFilename, String keywords) {
+       
+    // }
+
+    public String getCommand() {
+        return inputStrategy.getCommand();
     }
 
     public int loadFile(String filename) {
@@ -54,7 +70,7 @@ public class KWICDriver {
         displayUsage();
         AbstractSentencesProcessor processor;
         while (true) {
-            String command = inputStrategy.getCommand();
+            String command = this.getCommand();
             if (Commands.KWIC.equals(command)) {
                 processor = new KWICProcessor(this.lines, new AlphabeticSorter());
             } else if (command.startsWith(Commands.KEYWORD_SEARCH)) {
