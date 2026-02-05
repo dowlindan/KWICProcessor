@@ -1,5 +1,9 @@
 package edu.drexel.se311.kwic;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.*;
 
 public class OptionReader {
@@ -11,7 +15,13 @@ public class OptionReader {
 	}
 	
 	public static void readOptions(String configFilepath) {
-		ResourceBundle rb = ResourceBundle.getBundle("config");
+		ResourceBundle rb;
+		try (InputStream in = Files.newInputStream(Path.of(configFilepath))) {
+    		rb = new PropertyResourceBundle(in);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return;
+		}
 		Enumeration<String> keys = rb.getKeys();
 		userOptions = new HashMap<String, String>();
 		while (keys.hasMoreElements()) {
