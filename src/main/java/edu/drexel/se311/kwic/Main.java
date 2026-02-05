@@ -1,63 +1,33 @@
 package edu.drexel.se311.kwic;
 
-import edu.drexel.se311.kwic.fileparsing.AbstractFileParser;
 import edu.drexel.se311.kwic.io.*;
-import edu.drexel.se311.kwic.sorting.*;
-import java.util.Arrays;
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
         if (args.length < 2) {
-            System.err.println("Usage: (java exec) <kwic-processing|keyword-search|index-generation> <config-filename>");
+            System.err.println("Usage: (java exec) <kwic-processing|keyword-search|index-generation> <keyword if applicable> <config-filename>");
             System.exit(1);
         }
         
-        String filename = args[0];
-
-        OptionReader.readOptions("config.properties");
-        String inputFile = OptionReader.getString("InputFileName");
-        String inputObjString = OptionReader.getString("Input");
-        String outputObjString = OptionReader.getString("Output");
-        String sortingType = OptionReader.getString("Order");
-        String wordFiltering = OptionReader.getString("WordFiltering");
-        String trivialWords = OptionReader.getString("TrivialWords");
-
-        CommandsAsStringListInput cList = new CommandsAsStringListInput();
-        cList.addCommand("kwic-processing");
-        AbstractFileParser fileParser = (AbstractFileParser) OptionReader.getObjectFromKey(inputObjString);
-        OutputStrategy outputStrategy = (OutputStrategy) OptionReader.getObjectFromKey(outputObjString);
-        SortingStrategy sortingStrategy;
-        if ("Ascending".equals(sortingType)) {
-            sortingStrategy = new AlphabeticSorter();
+        String command = args[0];
+        String keyword;
+        String configFilename;
+        if (Commands.KEYWORD_SEARCH.equals(command)) {
+            if (args.length != 3) {
+                System.err.println("Need 3 args for keyword: keyword <word> <config-file>");
+                System.exit(1);
+            }
+            keyword = args[1];
+            configFilename = args[2];
         } else {
-            System.err.println("Unsupported sorting order");
-            System.exit(1);
-            return;
-        }
-
-        boolean filterWords;
-        if ("Yes".equals(wordFiltering)) {
-            filterWords = true;
-        } else if ("No".equals(wordFiltering)) {
-            filterWords = false;
-        } else {
-            System.err.println("Unsupported word filtering choice");
-            System.exit(1);
-            return;
+            if (args.length != 2) {
+                System.err.println("Need 2 args: <kwic-processing|index-generation> <config-filename>");
+            }
+            keyword = null;
+            configFilename = args[1];
         }
         
-        List<String> trivialWordsList = Arrays.asList(trivialWords.split(","));
-
-        
-
-        KWICDriver driver = new KWICDriver(fileParser, cList, outputStrategy, sortingStrategy, filterWords, trivialWordsList);
-        int result = driver.loadFile(inputFile);
-        if (result == 0) {
-            driver.run();
-        } else {
-            System.err.println("Failed to load file.");
-            System.exit(1);
-        }
+        KWICDriver driver = KWICDriver.fromConfig(command, keyword, configFilename);
+        driver.run();
     }
 }

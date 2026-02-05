@@ -5,7 +5,9 @@ import edu.drexel.se311.kwic.io.*;
 import edu.drexel.se311.kwic.line.Line;
 import edu.drexel.se311.kwic.sentenceprocessing.*;
 import edu.drexel.se311.kwic.sorting.*;
+import edu.drexel.se311.kwic.textparsing.NewlineTextParser;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class KWICDriver {
@@ -15,17 +17,60 @@ public class KWICDriver {
     private SortingStrategy sortingStrategy;
     private boolean filterWords; // TODO
     private List<String> trivialWords; // TODO
-
+    private String keyword;
+    
     private List<Line> lines;
 
-    public KWICDriver(AbstractFileParser fileParser, InputStrategy inputStrategy, OutputStrategy outputStrategy, SortingStrategy sortingStrategy, 
-        boolean filterWords, List<String> trivialWords) {
+    public KWICDriver(String filename, AbstractFileParser fileParser, InputStrategy inputStrategy, OutputStrategy outputStrategy, SortingStrategy sortingStrategy, 
+        boolean filterWords, List<String> trivialWords, String keyword) {
         this.fileParser = fileParser;
         this.inputStrategy = inputStrategy;
         this.outputStrategy = outputStrategy;
         this.sortingStrategy = sortingStrategy;
         this.filterWords = filterWords;
         this.trivialWords = trivialWords;
+        this.keyword = keyword;
+
+        this.loadFile(filename);
+    }
+
+    public static KWICDriver fromConfig(String command, String keyword, String configFilename) {
+        OptionReader.readOptions(configFilename);
+        String inputFile = OptionReader.getString("InputFileName");
+        String inputObjString = OptionReader.getString("Input");
+        String outputObjString = OptionReader.getString("Output");
+        String sortingType = OptionReader.getString("Order");
+        String wordFiltering = OptionReader.getString("WordFiltering");
+        String trivialWords = OptionReader.getString("TrivialWords");
+
+        CommandsAsStringListInput cList = new CommandsAsStringListInput();
+        cList.addCommand("kwic-processing");
+        AbstractFileParser fileParser = (AbstractFileParser) OptionReader.getObjectFromKey(inputObjString);
+        fileParser.setTextParser(new NewlineTextParser());
+        OutputStrategy outputStrategy = (OutputStrategy) OptionReader.getObjectFromKey(outputObjString);
+        SortingStrategy sortingStrategy;
+        if ("Ascending".equals(sortingType)) {
+            sortingStrategy = new AlphabeticSorter();
+        } else {
+            System.err.println("Unsupported sorting order");
+            System.exit(1);
+            return null;
+        }
+
+        boolean filterWords;
+        if ("Yes".equals(wordFiltering)) {
+            filterWords = true;
+        } else if ("No".equals(wordFiltering)) {
+            filterWords = false;
+        } else {
+            System.err.println("Unsupported word filtering choice");
+            System.exit(1);
+            return null;
+        }
+        
+        List<String> trivialWordsList = Arrays.asList(trivialWords.split(","));
+        KWICDriver driver = new KWICDriver(inputFile, fileParser, cList, outputStrategy, sortingStrategy, filterWords, trivialWordsList, keyword);
+        return driver;
     }
 
     // public KWICDriver(String configFilename, String keywords) {
@@ -60,7 +105,6 @@ public class KWICDriver {
         }
 
         inputStrategy.open();
-        displayUsage();
         AbstractSentencesProcessor processor;
         while (true) {
             String command = this.getCommand();
@@ -70,7 +114,7 @@ public class KWICDriver {
             if (Commands.KWIC.equals(command)) {
                 processor = new KWICProcessor(this.lines, sortingStrategy);
             } else if (command.startsWith(Commands.KEYWORD_SEARCH)) {
-                String keyword = command.substring(Commands.KEYWORD_SEARCH.length()).trim();
+                //String keyword = command.substring(Commands.KEYWORD_SEARCH.length()).trim();
                 if (keyword.isEmpty()) {
                     outputStrategy.display("Keyword search requires a keyword.");
                     displayUsage();
