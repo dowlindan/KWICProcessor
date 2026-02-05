@@ -5,21 +5,22 @@ import edu.drexel.se311.kwic.io.*;
 import edu.drexel.se311.kwic.line.Line;
 import edu.drexel.se311.kwic.sentenceprocessing.*;
 import edu.drexel.se311.kwic.sorting.*;
-import edu.drexel.se311.kwic.textparsing.NewlineTextParser;
 import java.util.ArrayList;
 import java.util.List;
 
 public class KWICDriver {
+    private AbstractFileParser fileParser;
     private InputStrategy inputStrategy;
     private OutputStrategy outputStrategy; 
     private SortingStrategy sortingStrategy;
-    private boolean filterWords;
-    private List<String> trivialWords;
+    private boolean filterWords; // TODO
+    private List<String> trivialWords; // TODO
 
     private List<Line> lines;
 
-    public KWICDriver(InputStrategy inputStrategy, OutputStrategy outputStrategy, SortingStrategy sortingStrategy, 
+    public KWICDriver(AbstractFileParser fileParser, InputStrategy inputStrategy, OutputStrategy outputStrategy, SortingStrategy sortingStrategy, 
         boolean filterWords, List<String> trivialWords) {
+        this.fileParser = fileParser;
         this.inputStrategy = inputStrategy;
         this.outputStrategy = outputStrategy;
         this.sortingStrategy = sortingStrategy;
@@ -36,18 +37,10 @@ public class KWICDriver {
     }
 
     public int loadFile(String filename) {
-        AbstractFileParser parser;
-        if (filename.endsWith(".txt")) {
-            parser = new PlaintextFileParser(new NewlineTextParser());
-        } else {
-            outputStrategy.display("Unsupported file format: " + filename);
-            return 1;
-        }
-
-        parser.setFilePath(filename);
+        fileParser.setFilePath(filename);
         
         try {
-            this.lines = parser.getSentencesAsLines();
+            this.lines = fileParser.getSentencesAsLines();
             return 0;
         } catch (Exception e) {
             outputStrategy.display("Error reading file: " + e.getMessage());
@@ -57,7 +50,7 @@ public class KWICDriver {
     }
 
     private void displayUsage() {
-        outputStrategy.display("Usage: kwic | search <keyword> | index | quit");
+        outputStrategy.display("Usage: (java exec) <kwic-processing|keyword-search|index-generation> <config-filename>");
     }
 
     public void run() {
@@ -71,8 +64,11 @@ public class KWICDriver {
         AbstractSentencesProcessor processor;
         while (true) {
             String command = this.getCommand();
+            if (command == null) {
+                break;
+            }
             if (Commands.KWIC.equals(command)) {
-                processor = new KWICProcessor(this.lines, new AlphabeticSorter());
+                processor = new KWICProcessor(this.lines, sortingStrategy);
             } else if (command.startsWith(Commands.KEYWORD_SEARCH)) {
                 String keyword = command.substring(Commands.KEYWORD_SEARCH.length()).trim();
                 if (keyword.isEmpty()) {
@@ -83,9 +79,9 @@ public class KWICDriver {
                 List<Line> linesWithKeyword = new ArrayList<>(this.lines);
                 linesWithKeyword.add(0, new Line(keyword, -1)); // Add keyword as first line
                 //  This is horrible design but I am out of time
-                processor = new KeywordSearch(linesWithKeyword, new AlphabeticSorter());
+                processor = new KeywordSearch(linesWithKeyword, sortingStrategy);
             } else if (Commands.INDEX_GENERATION.equals(command)) {
-                processor = new IndexGeneration(this.lines, new AlphabeticSorter());
+                processor = new IndexGeneration(this.lines, sortingStrategy);
             } else if (Commands.QUIT.equals(command)) {
                 break;
             } else {
