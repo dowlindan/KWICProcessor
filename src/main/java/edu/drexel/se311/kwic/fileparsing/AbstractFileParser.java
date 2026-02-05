@@ -23,7 +23,5 @@ public abstract class AbstractFileParser {
         this.filePath = filePath;
     }
 
-    public abstract List<String> getSentencesAsList() throws IOException;
-
     public abstract List<Line> getSentencesAsLines() throws IOException;
 }

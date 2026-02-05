@@ -73,10 +73,6 @@ public class KWICDriver {
         return driver;
     }
 
-    // public KWICDriver(String configFilename, String keywords) {
-       
-    // }
-
     public String getCommand() {
         return inputStrategy.getCommand();
     }
@@ -98,6 +94,30 @@ public class KWICDriver {
         outputStrategy.display("Usage: (java exec) <kwic-processing|keyword-search|index-generation> <config-filename>");
     }
 
+    private AbstractSentencesProcessor getProcessorFromCommand(String command) {
+        AbstractSentencesProcessor processor;
+        if (Commands.KWIC.equals(command)) {
+                processor = new KWICProcessor(this.lines, sortingStrategy);
+        } else if (command.startsWith(Commands.KEYWORD_SEARCH)) {
+            //String keyword = command.substring(Commands.KEYWORD_SEARCH.length()).trim();
+            if (keyword.isEmpty()) {
+                outputStrategy.display("Keyword search requires a keyword.");
+                displayUsage();
+                return null;
+            }
+            List<Line> linesWithKeyword = new ArrayList<>(this.lines);
+            linesWithKeyword.add(0, new Line(keyword, -1)); // Add keyword as first line
+            //  This is horrible design but I am out of time
+            processor = new KeywordSearch(linesWithKeyword, sortingStrategy);
+        } else if (Commands.INDEX_GENERATION.equals(command)) {
+            processor = new IndexGeneration(this.lines, sortingStrategy);
+        } else {
+            outputStrategy.display("Invalid command.");
+            displayUsage();
+            return null;
+        }
+        return processor;
+    }
     public void run() {
         if (this.lines == null || this.lines.isEmpty()) {
             outputStrategy.display("No sentences to process.");
@@ -105,38 +125,18 @@ public class KWICDriver {
         }
 
         inputStrategy.open();
-        AbstractSentencesProcessor processor;
         while (true) {
             String command = this.getCommand();
             if (command == null) {
                 break;
             }
-            if (Commands.KWIC.equals(command)) {
-                processor = new KWICProcessor(this.lines, sortingStrategy);
-            } else if (command.startsWith(Commands.KEYWORD_SEARCH)) {
-                //String keyword = command.substring(Commands.KEYWORD_SEARCH.length()).trim();
-                if (keyword.isEmpty()) {
-                    outputStrategy.display("Keyword search requires a keyword.");
-                    displayUsage();
-                    continue;
-                }
-                List<Line> linesWithKeyword = new ArrayList<>(this.lines);
-                linesWithKeyword.add(0, new Line(keyword, -1)); // Add keyword as first line
-                //  This is horrible design but I am out of time
-                processor = new KeywordSearch(linesWithKeyword, sortingStrategy);
-            } else if (Commands.INDEX_GENERATION.equals(command)) {
-                processor = new IndexGeneration(this.lines, sortingStrategy);
-            } else if (Commands.QUIT.equals(command)) {
+            AbstractSentencesProcessor processor = this.getProcessorFromCommand(command);
+            if (processor == null) {
                 break;
-            } else {
-                outputStrategy.display("Invalid command.");
-                displayUsage();
-                continue;
             }
+            
             List<String> output = processor.getProcessedOutput();
-            for (String line : output) {
-                outputStrategy.display(line);
-            }
+            outputStrategy.display(output);
         }
         inputStrategy.close();
     }

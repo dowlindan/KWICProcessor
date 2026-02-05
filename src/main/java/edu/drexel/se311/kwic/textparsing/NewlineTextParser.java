@@ -7,11 +7,6 @@ import java.util.List;
 
 public class NewlineTextParser extends AbstractTextParser {
     @Override
-    public List<String> parseSentencesAsList(String rawText) {
-        return Arrays.asList(rawText.split("\n"));
-    }
-
-    @Override
     public List<Line> parseSentencesAsLines(String rawText) {
         List<Line> linesList = new ArrayList<>();
         String[] lines = rawText.split("\n");

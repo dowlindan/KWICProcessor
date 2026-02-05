@@ -7,24 +7,6 @@ import java.util.List;
 
 public class SentenceTextParser extends AbstractTextParser {
     @Override
-    public List<String> parseSentencesAsList(String rawText) {
-        ArrayList<String> sentences = new ArrayList<>();
-        BreakIterator iterator = BreakIterator.getSentenceInstance();
-        iterator.setText(rawText);
-
-        int start = iterator.first();
-
-        for (int end = iterator.next(); end != BreakIterator.DONE; start = end, end = iterator.next()) {
-            String sentence = rawText.substring(start, end).trim();
-            if (!sentence.isEmpty()) {
-                sentences.add(sentence);
-            }
-        }
-       
-       return sentences;
-    }
-
-    @Override
     public List<Line> parseSentencesAsLines(String rawText) {
         ArrayList<String> sentences = new ArrayList<>();
         BreakIterator iterator = BreakIterator.getSentenceInstance();

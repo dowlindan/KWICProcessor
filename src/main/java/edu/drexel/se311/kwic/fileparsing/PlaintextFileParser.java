@@ -15,12 +15,6 @@ public class PlaintextFileParser extends AbstractFileParser {
     }
 
     @Override
-    public List<String> getSentencesAsList() throws IOException {
-       String content = new String(Files.readAllBytes(Paths.get(filePath)));
-       return textParser.parseSentencesAsList(content);
-    }
-
-    @Override
     public List<Line> getSentencesAsLines() throws IOException {
         String content = new String(Files.readAllBytes(Paths.get(filePath)));
         return textParser.parseSentencesAsLines(content);
