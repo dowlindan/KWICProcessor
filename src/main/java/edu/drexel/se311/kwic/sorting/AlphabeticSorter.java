@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class AlphabeticSorter extends SortingStrategy {
+    public AlphabeticSorter() {}
+    
     @Override
     public List<String> sort(List<String> strings) {
         List<String> sortedLines = new ArrayList<>(strings);

@@ -8,6 +8,8 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class PlaintextFileParser extends AbstractFileParser {
+    public PlaintextFileParser() {}
+    
     public PlaintextFileParser(AbstractTextParser textParser) {
         super(textParser);
     }

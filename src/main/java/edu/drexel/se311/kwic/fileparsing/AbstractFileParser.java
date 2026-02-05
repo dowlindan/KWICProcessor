@@ -9,7 +9,13 @@ public abstract class AbstractFileParser {
     protected String filePath;
     protected AbstractTextParser textParser;
 
+    public AbstractFileParser() {}
+
     public AbstractFileParser(AbstractTextParser textParser) {
+        this.textParser = textParser;
+    }
+    
+    public void setTextParser(AbstractTextParser textParser) {
         this.textParser = textParser;
     }
     
