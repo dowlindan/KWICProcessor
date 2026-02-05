@@ -51,6 +51,8 @@ public class KWICDriver {
         SortingStrategy sortingStrategy;
         if ("Ascending".equals(sortingType)) {
             sortingStrategy = new AlphabeticSorter();
+        } else if ("Descending".equals(sortingType)) {
+            sortingStrategy = new ReverseAlphabeticSorter();
         } else {
             System.err.println("Unsupported sorting order");
             System.exit(1);
