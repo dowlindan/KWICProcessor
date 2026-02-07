@@ -4,18 +4,21 @@ import edu.drexel.se311.kwic.line.Line;
 import edu.drexel.se311.kwic.sorting.SortingStrategy;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class KeywordSearch extends AbstractSentencesProcessor {
-    public KeywordSearch(List<Line> inputLines, SortingStrategy sortingStrategy) {
-        super(inputLines, sortingStrategy);
+    private String keyword;
+
+    public KeywordSearch(List<Line> inputLines, boolean filterWords, Set<String> trivialWords, SortingStrategy sortingStrategy, String keyword) {
+        super(inputLines, filterWords, trivialWords, sortingStrategy);
+        this.keyword = keyword;
     }
 
     @Override
     public List<String> getProcessedOutput() {
         List<String> processedOutput = new ArrayList<>();
-        String keyword = this.inputLines.get(0).getContent();
         int sentencesWithKeyword = 0;
-        for (int i = 1; i < this.inputLines.size(); i++) {
+        for (int i = 0; i < this.inputLines.size(); i++) {
             if (this.inputLines.get(i).getContent().contains(keyword)) {
                 sentencesWithKeyword++;
                 String outputLine = "";

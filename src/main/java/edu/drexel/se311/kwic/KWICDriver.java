@@ -6,23 +6,24 @@ import edu.drexel.se311.kwic.line.Line;
 import edu.drexel.se311.kwic.sentenceprocessing.*;
 import edu.drexel.se311.kwic.sorting.*;
 import edu.drexel.se311.kwic.textparsing.NewlineTextParser;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
 
 public class KWICDriver {
     private AbstractFileParser fileParser;
     private InputStrategy inputStrategy;
     private OutputStrategy outputStrategy; 
     private SortingStrategy sortingStrategy;
-    private boolean filterWords; // TODO
-    private List<String> trivialWords; // TODO
+    private boolean filterWords;
+    private Set<String> trivialWords;
     private String keyword;
     
     private List<Line> lines;
 
     public KWICDriver(String filename, AbstractFileParser fileParser, InputStrategy inputStrategy, OutputStrategy outputStrategy, SortingStrategy sortingStrategy, 
-        boolean filterWords, List<String> trivialWords, String keyword) {
+        boolean filterWords, Set<String> trivialWords, String keyword) {
         this.fileParser = fileParser;
         this.inputStrategy = inputStrategy;
         this.outputStrategy = outputStrategy;
@@ -44,7 +45,7 @@ public class KWICDriver {
         String trivialWords = OptionReader.getString("TrivialWords");
 
         CommandsAsStringListInput cList = new CommandsAsStringListInput();
-        cList.addCommand("kwic-processing");
+        cList.addCommand(command);
         AbstractFileParser fileParser = (AbstractFileParser) OptionReader.getObjectFromKey(inputObjString);
         fileParser.setTextParser(new NewlineTextParser());
         OutputStrategy outputStrategy = (OutputStrategy) OptionReader.getObjectFromKey(outputObjString);
@@ -70,8 +71,8 @@ public class KWICDriver {
             return null;
         }
         
-        List<String> trivialWordsList = Arrays.asList(trivialWords.split(","));
-        KWICDriver driver = new KWICDriver(inputFile, fileParser, cList, outputStrategy, sortingStrategy, filterWords, trivialWordsList, keyword);
+        Set<String> trivialWordSet = new HashSet<>(Arrays.asList(trivialWords.split(",")));
+        KWICDriver driver = new KWICDriver(inputFile, fileParser, cList, outputStrategy, sortingStrategy, filterWords, trivialWordSet, keyword);
         return driver;
     }
 
@@ -99,20 +100,16 @@ public class KWICDriver {
     private AbstractSentencesProcessor getProcessorFromCommand(String command) {
         AbstractSentencesProcessor processor;
         if (Commands.KWIC.equals(command)) {
-                processor = new KWICProcessor(this.lines, sortingStrategy);
+                processor = new KWICProcessor(this.lines, this.filterWords, this.trivialWords, this.sortingStrategy);
         } else if (command.startsWith(Commands.KEYWORD_SEARCH)) {
-            //String keyword = command.substring(Commands.KEYWORD_SEARCH.length()).trim();
             if (keyword.isEmpty()) {
                 outputStrategy.display("Keyword search requires a keyword.");
                 displayUsage();
                 return null;
             }
-            List<Line> linesWithKeyword = new ArrayList<>(this.lines);
-            linesWithKeyword.add(0, new Line(keyword, -1)); // Add keyword as first line
-            //  This is horrible design but I am out of time
-            processor = new KeywordSearch(linesWithKeyword, sortingStrategy);
+            processor = new KeywordSearch(this.lines, this.filterWords, this.trivialWords, this.sortingStrategy, this.keyword);
         } else if (Commands.INDEX_GENERATION.equals(command)) {
-            processor = new IndexGeneration(this.lines, sortingStrategy);
+            processor = new IndexGeneration(this.lines, this.filterWords, this.trivialWords, this.sortingStrategy);;
         } else {
             outputStrategy.display("Invalid command.");
             displayUsage();

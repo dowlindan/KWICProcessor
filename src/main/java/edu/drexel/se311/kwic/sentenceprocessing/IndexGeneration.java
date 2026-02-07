@@ -6,11 +6,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class IndexGeneration extends AbstractSentencesProcessor {
     private Map<String, List<Integer>> indexMap;
-    public IndexGeneration(List<Line> inputLines, SortingStrategy sortingStrategy) {
-        super(inputLines, sortingStrategy);
+    public IndexGeneration(List<Line> inputLines, boolean filterWords, Set<String> trivialWords, SortingStrategy sortingStrategy) {
+        super(inputLines, filterWords, trivialWords, sortingStrategy);
         this.indexMap = new HashMap<>();
     }
 
@@ -20,10 +21,10 @@ public class IndexGeneration extends AbstractSentencesProcessor {
         for (Line line : this.inputLines) {
             String[] words = line.getContent().split(" ");
             for (String word : words) {
-                if (!indexMap.containsKey(word)) {
+                if (!indexMap.containsKey(word) && !isWordTrivial(word)) {
                     indexMap.put(word, new ArrayList<>());
                 }
-                if (!indexMap.get(word).contains(line.getLineNumber())) {
+                if (!indexMap.get(word).contains(line.getLineNumber()) && !isWordTrivial(word)) {
                     indexMap.get(word).add(line.getLineNumber());
                 }
             }

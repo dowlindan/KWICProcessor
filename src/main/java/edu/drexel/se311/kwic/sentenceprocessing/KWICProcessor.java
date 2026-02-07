@@ -6,14 +6,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 public class KWICProcessor extends AbstractSentencesProcessor {
     private List<LinkedList<String>> circularShifts;
     private final static String DELIMETER = " ";
     private final static String HEADER = "Index | Circular Shifted Lines | Original Line Index";
 
-    public KWICProcessor(List<Line> inputLines, SortingStrategy sortingStrategy) {
-        super(inputLines, sortingStrategy);
+    public KWICProcessor(List<Line> inputLines, boolean filterWords, Set<String> trivialWords, SortingStrategy sortingStrategy) {
+        super(inputLines, filterWords, trivialWords, sortingStrategy);
         circularShifts = new LinkedList<>();
     }
 
