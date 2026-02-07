@@ -1,0 +1,10 @@
+Index | Circular Shifted Lines | Original Line Index
+1 | Tiger Hidden Dragon Crouching | 3
+2 | Software Architecture | 2
+3 | Sensibility Sense and | 1
+4 | Sense and Sensibility | 1
+5 | Hidden Dragon Crouching Tiger | 3
+6 | Dragon Crouching Tiger Hidden | 3
+7 | Crouching Tiger Hidden Dragon | 3
+8 | Architecture Software | 2
+9 | and Sensibility Sense | 1

@@ -24,7 +24,7 @@ public class KeywordSearch extends AbstractSentencesProcessor {
                 String outputLine = "";
                 for (String word : this.inputLines.get(i).getContent().split(" ")) {
                     if (word.contains(keyword)) {
-                        outputLine += "\033[1m*" + word + "*\033[0m ";
+                        outputLine += "[" + word + "] ";
                     } else {
                         outputLine += word + " ";
                     }

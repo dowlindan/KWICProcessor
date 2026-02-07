@@ -22,6 +22,7 @@ public class Main {
         } else {
             if (args.length != 2) {
                 System.err.println("Need 2 args: <kwic-processing|index-generation> <config-filename>");
+                System.exit(1);
             }
             keyword = null;
             configFilename = args[1];

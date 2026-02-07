@@ -5,11 +5,10 @@ import edu.drexel.se311.kwic.io.*;
 import edu.drexel.se311.kwic.line.Line;
 import edu.drexel.se311.kwic.sentenceprocessing.*;
 import edu.drexel.se311.kwic.sorting.*;
-import edu.drexel.se311.kwic.textparsing.NewlineTextParser;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.HashSet;
 
 public class KWICDriver {
     private AbstractFileParser fileParser;
@@ -37,6 +36,7 @@ public class KWICDriver {
 
     public static KWICDriver fromConfig(String command, String keyword, String configFilename) {
         OptionReader.readOptions(configFilename);
+        
         String inputFile = OptionReader.getString("InputFileName");
         String inputObjString = OptionReader.getString("Input");
         String outputObjString = OptionReader.getString("Output");
@@ -46,9 +46,15 @@ public class KWICDriver {
 
         CommandsAsStringListInput cList = new CommandsAsStringListInput();
         cList.addCommand(command);
+        
         AbstractFileParser fileParser = (AbstractFileParser) OptionReader.getObjectFromKey(inputObjString);
-        fileParser.setTextParser(new NewlineTextParser());
+
         OutputStrategy outputStrategy = (OutputStrategy) OptionReader.getObjectFromKey(outputObjString);
+        if ("TxtOutputObj".equals(outputObjString)) {
+            String outputFile = OptionReader.getString("OutputFileName");
+            ((TxtOutput) outputStrategy).setOutputFilename(outputFile);
+        }
+
         SortingStrategy sortingStrategy;
         if ("Ascending".equals(sortingType)) {
             sortingStrategy = new AlphabeticSorter();
@@ -117,6 +123,7 @@ public class KWICDriver {
         }
         return processor;
     }
+    
     public void run() {
         if (this.lines == null || this.lines.isEmpty()) {
             outputStrategy.display("No sentences to process.");
