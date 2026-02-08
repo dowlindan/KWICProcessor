@@ -18,7 +18,9 @@ class Line {
 abstract class AbstractFileParser {
   #filePath : String
   #textParser : AbstractTextParser
+  +AbstractFileParser()
   +AbstractFileParser(textParser: AbstractTextParser)
+  +setTextParser(textParser: AbstractTextParser)
   +setFilePath(filePath : String) : void
   {abstract} +getSentencesAsList() : List<String>
   {abstract} +getSentencesAsLines() : List<Line>
@@ -28,20 +30,15 @@ abstract class AbstractFileParser {
 ' Abstract Text Parser
 ' =====================
 abstract class AbstractTextParser {
-  {abstract} +parseSentencesAsList(String rawText) : List<String>
   {abstract} +parseSentencesAsLines(String rawText) : List<Line>
 }
 
 ' =====================
 ' Concrete Text Parsers
 ' =====================
-class NewlineTextParser {
-  +parseSentencesAsList(String rawText) : List<String>
-  +parseSentencesAsLines(String rawText) : List<Line>
-}
-
-class SentenceTextParser {
-  +parseSentencesAsList(String rawText) : List<String>
+class DelimTextParser {
+  -delim: String
+  +DelimTextParser(delim: String)
   +parseSentencesAsLines(String rawText) : List<Line>
 }
 
@@ -49,8 +46,14 @@ class SentenceTextParser {
 ' Concrete File Parser
 ' =====================
 class PlaintextFileParser {
-  +PlaintextFileParser(textParser: AbstractTextParser)
-  +getSentencesAsList() : List<String>
+  -DELIM: String
+  +PlaintextFileParser()
+  +getSentencesAsLines() : List<Line>
+}
+
+class CsvFileParser {
+  -DELIM: String
+  +CsvFileParser()
   +getSentencesAsLines() : List<Line>
 }
 
@@ -62,7 +65,12 @@ abstract class SortingStrategy {
   {abstract} +sort(List<Line>) : List<Line>
 }
 
-class AlphabetizedSorter {
+class AlphabeticSorter {
+  +sort(List<String>) : List<String>
+  +sort(List<Line>) : List<Line>
+}
+
+class ReverseAlphabeticSorter {
   +sort(List<String>) : List<String>
   +sort(List<Line>) : List<Line>
 }
@@ -72,8 +80,11 @@ class AlphabetizedSorter {
 ' =====================
 abstract class AbstractSentencesProcessor {
   #inputLines : List<Line>
+  #trivialWords: Set<String>
   #sortingStrategy : SortingStrategy
-  +AbstractSentencesProcessor(inputSentences : List<String>, sortingStrategy : SortingStrategy)
+  #boolean: filterWords
+  +AbstractSentencesProcessor(inputSentences : List<String>, trivialWords : Set<String>, sortingStrategy : SortingStrategy, filterWords: boolean)
+  #isWordTrivial(word: String) : boolean
   {abstract} +getProcessedOutput() : List<String>
 }
 
@@ -82,17 +93,18 @@ abstract class AbstractSentencesProcessor {
 ' =====================
 class KWICProcessor {
   -circularShifts : List<LinkedList<String>>
-  +KWICProcessor(inputSentences : List<String>, sortingStrategy : SortingStrategy)
+  +KWICProcessor(inputSentences : List<String>, trivialWords : Set<String>, sortingStrategy : SortingStrategy, filterWords: boolean)
   +getProcessedOutput() : List<String>
 }
 
 class KeywordSearch {
-  +KeywordSearch(inputSentences : List<String>, sortingStrategy : SortingStrategy)
+  -keyword: String
+  +KeywordSearch(inputSentences : List<String>, trivialWords : Set<String>, sortingStrategy : SortingStrategy, filterWords: boolean, keyword: String)
   +getProcessedOutput() : List<String>
 }
 
 class IndexGeneration {
-  +IndexGeneration(inputSentences : List<String>, sortingStrategy : SortingStrategy)
+  +IndexGeneration(inputSentences : List<String>, trivialWords : Set<String>, sortingStrategy : SortingStrategy, filterWords: boolean)
   #wordIndexMap : Map<String, List<Integer>>
   +getProcessedOutput() : List<String>
 }
@@ -112,8 +124,23 @@ class ConsoleInput {
   +getCommand() : String
 }
 
+class CommandsAsStringListInput {
+  -index: int
+  -commands: List<String>
+  +addCommand(String command): void
+  +getCommand() : String
+}
+
 abstract class OutputStrategy {
   {abstract} +display(output : String) : void
+  +display(outputStrings: List<String>) : void
+}
+
+abstract class TxtOutput {
+  -firstLinewritten: boolean
+  -outputFilename: String
+  +setOutputFilename(outputFilename: String) : void
+  +display(output : String) : void
 }
 
 class ConsoleOutput {
@@ -134,12 +161,20 @@ class Commands {
 ' Driver & Entry Point
 ' =====================
 class KWICDriver {
+  -fileParser: AbstractFileParser
   -inputStrategy : InputStrategy
   -outputStrategy : OutputStrategy
+  -sortingStrategy: SortingStrategy
+  -filterWords: boolean
+  -trivialWords: Set<String>
+  -keyword: String
   -sentences : List<Line>
-  +KWICDriver(inputStrategy : InputStrategy, outputStrategy : OutputStrategy)
+  +KWICDriver(filename : String, fileParser: AbstractFileParser, inputStrategy : InputStrategy, outputStrategy : OutputStrategy, sortingStrategy : SortingStrategy, filterWords : boolean, trivialWords : Set<String>, keyword : String)
+  +fromConfig(command : String, keyword : String, configFilename : String) : KWICDriver
   +loadFile(filename : String)
   -displayUsage() : void
+  -getCommand() : void
+  -getProcessorFromCommand(command: String) : AbstractSentencesProcessor
   +run() : void
 }
 
@@ -147,35 +182,53 @@ class Main {
   +main(args : String[]) : void
 }
 
+class KWICObjectLoader {
+  +loadObject(classname : String) : Object
+}
+
+class OptionReader {
+  -userOptions: HashMap<String, String>
+  -kwicObjLoader: KWICObjectLoader
+  -OptionReader() : OptionReader
+  +readOptions(configFilepath: String)
+  +getObjectFromKey(keyStr: String) : Object
+  +getObjectFromStr(objStr: String) : Object
+  +getString(keyStr : String) : String
+}
 ' =====================
 ' Inheritance
 ' =====================
 AbstractFileParser <|-- PlaintextFileParser
+AbstractFileParser <|-- CsvFileParser
 
-AbstractTextParser <|-- NewlineTextParser
-AbstractTextParser <|-- SentenceTextParser
+AbstractTextParser <|-- DelimTextParser
 
 AbstractSentencesProcessor <|-- KWICProcessor
 AbstractSentencesProcessor <|-- KeywordSearch
 AbstractSentencesProcessor <|-- IndexGeneration
 
-SortingStrategy <|-- AlphabetizedSorter
+SortingStrategy <|-- AlphabeticSorter
+SortingStrategy <|-- ReverseAlphabeticSorter
 
 InputStrategy <|-- ConsoleInput
+InputStrategy <|-- CommandsAsStringListInput
 OutputStrategy <|-- ConsoleOutput
+OutputStrategy <|-- TxtOutput
 
 ' =====================
 ' Relationships
 ' =====================
 Main --> KWICDriver : starts
+OptionReader --o KWICObjectLoader
 
 KWICDriver --> Commands : uses
-
-KWICDriver --o InputStrategy : uses
-KWICDriver --o OutputStrategy : uses
+KWICDriver --> OptionReader
+KWICDriver --o InputStrategy
+KWICDriver --o OutputStrategy
+KWICDriver --o SortingStrategy
 
 KWICDriver --o AbstractFileParser : selects parser\nbased on file ext
-KWICDriver --o AbstractSentencesProcessor : selects processor\nbased on command
+KWICDriver --> AbstractSentencesProcessor : selects processor\nbased on command
 
 AbstractFileParser --o AbstractTextParser : has
 

@@ -52,6 +52,17 @@ which runs:
 java -jar hw2.jar "$@"
 ```
 
+## HW2 Documentation
+
+- Changed newline text parser to DelimTextParser so delim can be chosen as either newline or period
+- CsvFileParser or PlaintextFileParser chooses different delims
+- Added trivialWords and filterWords field to AbstractSentencesProcessor
+- To fit passing which processor to use as a cli command into current input strategy, made a child class wihch stores commands as a list of strings. This also allows for future extension such as multiple commands
+- The run() method in KWICDriver does not depend on concrete implementations of abstractions, but the fromConfig file does.
+- Added more abstract fields to KWICDriver
+- Chose not to do anything with keywords for circular shifts since it made more sense to me.
+- For txt output, the folder must already exist
+
 
 
 
