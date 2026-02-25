@@ -1,0 +1,101 @@
+{
+  "@schemaVersion" : "1.0",
+  "name" : "pkg-clustering",
+  "structure" : [ {
+    "@type" : "item",
+    "name" : "KWICObjectLoader.java"
+  }, {
+    "@type" : "item",
+    "name" : "OptionReader.java"
+  }, {
+    "@type" : "group",
+    "name" : "line",
+    "nested" : [ {
+      "@type" : "item",
+      "name" : "line/Line.java"
+    } ]
+  }, {
+    "@type" : "group",
+    "name" : "sorting",
+    "nested" : [ {
+      "@type" : "item",
+      "name" : "sorting/SortingStrategy.java"
+    }, {
+      "@type" : "item",
+      "name" : "sorting/AlphabeticSorter.java"
+    }, {
+      "@type" : "item",
+      "name" : "sorting/ReverseAlphabeticSorter.java"
+    } ]
+  }, {
+    "@type" : "group",
+    "name" : "sentenceprocessing",
+    "nested" : [ {
+      "@type" : "item",
+      "name" : "sentenceprocessing/AbstractSentencesProcessor.java"
+    }, {
+      "@type" : "item",
+      "name" : "sentenceprocessing/IndexGeneration.java"
+    }, {
+      "@type" : "item",
+      "name" : "sentenceprocessing/KWICProcessor.java"
+    }, {
+      "@type" : "item",
+      "name" : "sentenceprocessing/KeywordSearch.java"
+    } ]
+  }, {
+    "@type" : "group",
+    "name" : "io",
+    "nested" : [ {
+      "@type" : "item",
+      "name" : "io/InputStrategy.java"
+    }, {
+      "@type" : "item",
+      "name" : "io/ConsoleInput.java"
+    }, {
+      "@type" : "item",
+      "name" : "io/CommandsAsStringListInput.java"
+    }, {
+      "@type" : "item",
+      "name" : "io/OutputStrategy.java"
+    }, {
+      "@type" : "item",
+      "name" : "io/TxtOutput.java"
+    }, {
+      "@type" : "item",
+      "name" : "io/ConsoleOutput.java"
+    }, {
+      "@type" : "item",
+      "name" : "io/Commands.java"
+    } ]
+  }, {
+    "@type" : "group",
+    "name" : "textparsing",
+    "nested" : [ {
+      "@type" : "item",
+      "name" : "textparsing/AbstractTextParser.java"
+    }, {
+      "@type" : "item",
+      "name" : "textparsing/DelimTextParser.java"
+    } ]
+  }, {
+    "@type" : "group",
+    "name" : "fileparsing",
+    "nested" : [ {
+      "@type" : "item",
+      "name" : "fileparsing/AbstractFileParser.java"
+    }, {
+      "@type" : "item",
+      "name" : "fileparsing/PlaintextFileParser.java"
+    }, {
+      "@type" : "item",
+      "name" : "fileparsing/CsvFileParser.java"
+    } ]
+  }, {
+    "@type" : "item",
+    "name" : "KWICDriver.java"
+  }, {
+    "@type" : "item",
+    "name" : "Main.java"
+  } ]
+}

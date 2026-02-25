@@ -1,0 +1,3002 @@
+{
+  "schemaVersion" : "1.0",
+  "name" : "dependency-file-sdsm",
+  "variables" : [ "KWICDriver.java", "KWICObjectLoader.java", "Main.java", "OptionReader.java", "fileparsing/AbstractFileParser.java", "fileparsing/CsvFileParser.java", "fileparsing/PlaintextFileParser.java", "io/Commands.java", "io/CommandsAsStringListInput.java", "io/ConsoleInput.java", "io/ConsoleOutput.java", "io/InputStrategy.java", "io/OutputStrategy.java", "io/TxtOutput.java", "line/Line.java", "sentenceprocessing/AbstractSentencesProcessor.java", "sentenceprocessing/IndexGeneration.java", "sentenceprocessing/KWICProcessor.java", "sentenceprocessing/KeywordSearch.java", "sorting/AlphabeticSorter.java", "sorting/ReverseAlphabeticSorter.java", "sorting/SortingStrategy.java", "textparsing/AbstractTextParser.java", "textparsing/DelimTextParser.java" ],
+  "cells" : [ {
+    "src" : 6,
+    "dest" : 4,
+    "values" : {
+      "Call" : 1.0,
+      "Extend" : 1.0,
+      "Use" : 2.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.fileparsing.PlaintextFileParser.PlaintextFileParser",
+        "file" : "fileparsing/PlaintextFileParser.java",
+        "type" : "function",
+        "lineNumber" : 14
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.fileparsing.AbstractFileParser",
+        "file" : "fileparsing/AbstractFileParser.java",
+        "type" : "type",
+        "lineNumber" : 8
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.fileparsing.PlaintextFileParser",
+        "file" : "fileparsing/PlaintextFileParser.java",
+        "type" : "type",
+        "lineNumber" : 10
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.fileparsing.AbstractFileParser",
+        "file" : "fileparsing/AbstractFileParser.java",
+        "type" : "type",
+        "lineNumber" : 8
+      },
+      "type" : "Extend"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.fileparsing.PlaintextFileParser.getSentencesAsLines",
+        "file" : "fileparsing/PlaintextFileParser.java",
+        "type" : "function",
+        "lineNumber" : 19
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.fileparsing.AbstractFileParser.filePath",
+        "file" : "fileparsing/AbstractFileParser.java",
+        "type" : "var",
+        "lineNumber" : 9
+      },
+      "type" : "Use"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.fileparsing.PlaintextFileParser.getSentencesAsLines",
+        "file" : "fileparsing/PlaintextFileParser.java",
+        "type" : "function",
+        "lineNumber" : 20
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.fileparsing.AbstractFileParser.textParser",
+        "file" : "fileparsing/AbstractFileParser.java",
+        "type" : "var",
+        "lineNumber" : 10
+      },
+      "type" : "Use"
+    } ]
+  }, {
+    "src" : 10,
+    "dest" : 12,
+    "values" : {
+      "Extend" : 1.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.io.ConsoleOutput",
+        "file" : "io/ConsoleOutput.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.io.OutputStrategy",
+        "file" : "io/OutputStrategy.java",
+        "type" : "type",
+        "lineNumber" : 5
+      },
+      "type" : "Extend"
+    } ]
+  }, {
+    "src" : 5,
+    "dest" : 4,
+    "values" : {
+      "Call" : 1.0,
+      "Extend" : 1.0,
+      "Use" : 2.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.fileparsing.CsvFileParser.CsvFileParser",
+        "file" : "fileparsing/CsvFileParser.java",
+        "type" : "function",
+        "lineNumber" : 15
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.fileparsing.AbstractFileParser",
+        "file" : "fileparsing/AbstractFileParser.java",
+        "type" : "type",
+        "lineNumber" : 8
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.fileparsing.CsvFileParser",
+        "file" : "fileparsing/CsvFileParser.java",
+        "type" : "type",
+        "lineNumber" : 11
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.fileparsing.AbstractFileParser",
+        "file" : "fileparsing/AbstractFileParser.java",
+        "type" : "type",
+        "lineNumber" : 8
+      },
+      "type" : "Extend"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.fileparsing.CsvFileParser.getSentencesAsLines",
+        "file" : "fileparsing/CsvFileParser.java",
+        "type" : "function",
+        "lineNumber" : 20
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.fileparsing.AbstractFileParser.filePath",
+        "file" : "fileparsing/AbstractFileParser.java",
+        "type" : "var",
+        "lineNumber" : 9
+      },
+      "type" : "Use"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.fileparsing.CsvFileParser.getSentencesAsLines",
+        "file" : "fileparsing/CsvFileParser.java",
+        "type" : "function",
+        "lineNumber" : 21
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.fileparsing.AbstractFileParser.textParser",
+        "file" : "fileparsing/AbstractFileParser.java",
+        "type" : "var",
+        "lineNumber" : 10
+      },
+      "type" : "Use"
+    } ]
+  }, {
+    "src" : 15,
+    "dest" : 14,
+    "values" : {
+      "Import" : 1.0,
+      "Use" : 1.0,
+      "Parameter" : 1.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "sentenceprocessing/AbstractSentencesProcessor.java",
+        "file" : "sentenceprocessing/AbstractSentencesProcessor.java",
+        "type" : "file",
+        "lineNumber" : 0
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.line.Line",
+        "file" : "line/Line.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Import"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.AbstractSentencesProcessor.inputLines",
+        "file" : "sentenceprocessing/AbstractSentencesProcessor.java",
+        "type" : "var",
+        "lineNumber" : 9
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.line.Line",
+        "file" : "line/Line.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Use"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.AbstractSentencesProcessor.inputLines",
+        "file" : "sentenceprocessing/AbstractSentencesProcessor.java",
+        "type" : "var",
+        "lineNumber" : 3
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.line.Line",
+        "file" : "line/Line.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Parameter"
+    } ]
+  }, {
+    "src" : 17,
+    "dest" : 21,
+    "values" : {
+      "Call" : 1.0,
+      "Import" : 1.0,
+      "Parameter" : 1.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.KWICProcessor.getProcessedOutput",
+        "file" : "sentenceprocessing/KWICProcessor.java",
+        "type" : "function",
+        "lineNumber" : 42
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sorting.SortingStrategy.sortLines",
+        "file" : "sorting/SortingStrategy.java",
+        "type" : "function",
+        "lineNumber" : 8
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "sentenceprocessing/KWICProcessor.java",
+        "file" : "sentenceprocessing/KWICProcessor.java",
+        "type" : "file",
+        "lineNumber" : 0
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sorting.SortingStrategy",
+        "file" : "sorting/SortingStrategy.java",
+        "type" : "type",
+        "lineNumber" : 6
+      },
+      "type" : "Import"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.KWICProcessor.KWICProcessor",
+        "file" : "sentenceprocessing/KWICProcessor.java",
+        "type" : "function",
+        "lineNumber" : 16
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sorting.SortingStrategy",
+        "file" : "sorting/SortingStrategy.java",
+        "type" : "type",
+        "lineNumber" : 6
+      },
+      "type" : "Parameter"
+    } ]
+  }, {
+    "src" : 8,
+    "dest" : 11,
+    "values" : {
+      "Extend" : 1.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.io.CommandsAsStringListInput",
+        "file" : "io/CommandsAsStringListInput.java",
+        "type" : "type",
+        "lineNumber" : 7
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.io.InputStrategy",
+        "file" : "io/InputStrategy.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Extend"
+    } ]
+  }, {
+    "src" : 16,
+    "dest" : 21,
+    "values" : {
+      "Call" : 1.0,
+      "Import" : 1.0,
+      "Parameter" : 1.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.IndexGeneration.getProcessedOutput",
+        "file" : "sentenceprocessing/IndexGeneration.java",
+        "type" : "function",
+        "lineNumber" : 34
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sorting.SortingStrategy.sort",
+        "file" : "sorting/SortingStrategy.java",
+        "type" : "function",
+        "lineNumber" : 7
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "sentenceprocessing/IndexGeneration.java",
+        "file" : "sentenceprocessing/IndexGeneration.java",
+        "type" : "file",
+        "lineNumber" : 0
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sorting.SortingStrategy",
+        "file" : "sorting/SortingStrategy.java",
+        "type" : "type",
+        "lineNumber" : 6
+      },
+      "type" : "Import"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.IndexGeneration.IndexGeneration",
+        "file" : "sentenceprocessing/IndexGeneration.java",
+        "type" : "function",
+        "lineNumber" : 15
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sorting.SortingStrategy",
+        "file" : "sorting/SortingStrategy.java",
+        "type" : "type",
+        "lineNumber" : 6
+      },
+      "type" : "Parameter"
+    } ]
+  }, {
+    "src" : 17,
+    "dest" : 14,
+    "values" : {
+      "Call" : 5.0,
+      "Import" : 1.0,
+      "Create" : 2.0,
+      "Use" : 2.0,
+      "Parameter" : 2.0,
+      "Contain" : 1.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.KWICProcessor.getProcessedOutput",
+        "file" : "sentenceprocessing/KWICProcessor.java",
+        "type" : "function",
+        "lineNumber" : 27
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.line.Line.getContent",
+        "file" : "line/Line.java",
+        "type" : "function",
+        "lineNumber" : 11
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.KWICProcessor.getProcessedOutput",
+        "file" : "sentenceprocessing/KWICProcessor.java",
+        "type" : "function",
+        "lineNumber" : 33
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.line.Line",
+        "file" : "line/Line.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.KWICProcessor.getProcessedOutput",
+        "file" : "sentenceprocessing/KWICProcessor.java",
+        "type" : "function",
+        "lineNumber" : 33
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.line.Line.getLineNumber",
+        "file" : "line/Line.java",
+        "type" : "function",
+        "lineNumber" : 15
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.KWICProcessor.getProcessedOutput",
+        "file" : "sentenceprocessing/KWICProcessor.java",
+        "type" : "function",
+        "lineNumber" : 38
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.line.Line",
+        "file" : "line/Line.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.KWICProcessor.getProcessedOutput",
+        "file" : "sentenceprocessing/KWICProcessor.java",
+        "type" : "function",
+        "lineNumber" : 38
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.line.Line.getLineNumber",
+        "file" : "line/Line.java",
+        "type" : "function",
+        "lineNumber" : 15
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "sentenceprocessing/KWICProcessor.java",
+        "file" : "sentenceprocessing/KWICProcessor.java",
+        "type" : "file",
+        "lineNumber" : 0
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.line.Line",
+        "file" : "line/Line.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Import"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.KWICProcessor.getProcessedOutput",
+        "file" : "sentenceprocessing/KWICProcessor.java",
+        "type" : "function",
+        "lineNumber" : 33
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.line.Line",
+        "file" : "line/Line.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Create"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.KWICProcessor.getProcessedOutput",
+        "file" : "sentenceprocessing/KWICProcessor.java",
+        "type" : "function",
+        "lineNumber" : 38
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.line.Line",
+        "file" : "line/Line.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Create"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.KWICProcessor.getProcessedOutput.shiftedLines",
+        "file" : "sentenceprocessing/KWICProcessor.java",
+        "type" : "var",
+        "lineNumber" : 24
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.line.Line",
+        "file" : "line/Line.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Use"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.KWICProcessor.getProcessedOutput.circularShiftsForLine",
+        "file" : "sentenceprocessing/KWICProcessor.java",
+        "type" : "var",
+        "lineNumber" : 30
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.line.Line",
+        "file" : "line/Line.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Use"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.KWICProcessor.getProcessedOutput.shiftedLines",
+        "file" : "sentenceprocessing/KWICProcessor.java",
+        "type" : "var",
+        "lineNumber" : 3
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.line.Line",
+        "file" : "line/Line.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Parameter"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.KWICProcessor.getProcessedOutput.circularShiftsForLine",
+        "file" : "sentenceprocessing/KWICProcessor.java",
+        "type" : "var",
+        "lineNumber" : 3
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.line.Line",
+        "file" : "line/Line.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Parameter"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.KWICProcessor.getProcessedOutput",
+        "file" : "sentenceprocessing/KWICProcessor.java",
+        "type" : "function",
+        "lineNumber" : 26
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.line.Line",
+        "file" : "line/Line.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Contain"
+    } ]
+  }, {
+    "src" : 18,
+    "dest" : 21,
+    "values" : {
+      "Import" : 1.0,
+      "Parameter" : 1.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "sentenceprocessing/KeywordSearch.java",
+        "file" : "sentenceprocessing/KeywordSearch.java",
+        "type" : "file",
+        "lineNumber" : 0
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sorting.SortingStrategy",
+        "file" : "sorting/SortingStrategy.java",
+        "type" : "type",
+        "lineNumber" : 6
+      },
+      "type" : "Import"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.KeywordSearch.KeywordSearch",
+        "file" : "sentenceprocessing/KeywordSearch.java",
+        "type" : "function",
+        "lineNumber" : 12
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sorting.SortingStrategy",
+        "file" : "sorting/SortingStrategy.java",
+        "type" : "type",
+        "lineNumber" : 6
+      },
+      "type" : "Parameter"
+    } ]
+  }, {
+    "src" : 17,
+    "dest" : 15,
+    "values" : {
+      "Call" : 1.0,
+      "Extend" : 1.0,
+      "Use" : 1.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.KWICProcessor.KWICProcessor",
+        "file" : "sentenceprocessing/KWICProcessor.java",
+        "type" : "function",
+        "lineNumber" : 17
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.AbstractSentencesProcessor",
+        "file" : "sentenceprocessing/AbstractSentencesProcessor.java",
+        "type" : "type",
+        "lineNumber" : 8
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.KWICProcessor",
+        "file" : "sentenceprocessing/KWICProcessor.java",
+        "type" : "type",
+        "lineNumber" : 11
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.AbstractSentencesProcessor",
+        "file" : "sentenceprocessing/AbstractSentencesProcessor.java",
+        "type" : "type",
+        "lineNumber" : 8
+      },
+      "type" : "Extend"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.KWICProcessor.getProcessedOutput",
+        "file" : "sentenceprocessing/KWICProcessor.java",
+        "type" : "function",
+        "lineNumber" : 42
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.AbstractSentencesProcessor.sortingStrategy",
+        "file" : "sentenceprocessing/AbstractSentencesProcessor.java",
+        "type" : "var",
+        "lineNumber" : 11
+      },
+      "type" : "Use"
+    } ]
+  }, {
+    "src" : 15,
+    "dest" : 21,
+    "values" : {
+      "Import" : 1.0,
+      "Use" : 1.0,
+      "Parameter" : 1.0,
+      "Contain" : 1.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "sentenceprocessing/AbstractSentencesProcessor.java",
+        "file" : "sentenceprocessing/AbstractSentencesProcessor.java",
+        "type" : "file",
+        "lineNumber" : 0
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sorting.SortingStrategy",
+        "file" : "sorting/SortingStrategy.java",
+        "type" : "type",
+        "lineNumber" : 6
+      },
+      "type" : "Import"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.AbstractSentencesProcessor.AbstractSentencesProcessor",
+        "file" : "sentenceprocessing/AbstractSentencesProcessor.java",
+        "type" : "function",
+        "lineNumber" : 18
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sorting.SortingStrategy",
+        "file" : "sorting/SortingStrategy.java",
+        "type" : "type",
+        "lineNumber" : 6
+      },
+      "type" : "Use"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.AbstractSentencesProcessor.AbstractSentencesProcessor",
+        "file" : "sentenceprocessing/AbstractSentencesProcessor.java",
+        "type" : "function",
+        "lineNumber" : 14
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sorting.SortingStrategy",
+        "file" : "sorting/SortingStrategy.java",
+        "type" : "type",
+        "lineNumber" : 6
+      },
+      "type" : "Parameter"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.AbstractSentencesProcessor",
+        "file" : "sentenceprocessing/AbstractSentencesProcessor.java",
+        "type" : "type",
+        "lineNumber" : 11
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sorting.SortingStrategy",
+        "file" : "sorting/SortingStrategy.java",
+        "type" : "type",
+        "lineNumber" : 6
+      },
+      "type" : "Contain"
+    } ]
+  }, {
+    "src" : 5,
+    "dest" : 14,
+    "values" : {
+      "Import" : 1.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "fileparsing/CsvFileParser.java",
+        "file" : "fileparsing/CsvFileParser.java",
+        "type" : "file",
+        "lineNumber" : 0
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.line.Line",
+        "file" : "line/Line.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Import"
+    } ]
+  }, {
+    "src" : 20,
+    "dest" : 14,
+    "values" : {
+      "Import" : 1.0,
+      "Use" : 1.0,
+      "Parameter" : 1.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "sorting/ReverseAlphabeticSorter.java",
+        "file" : "sorting/ReverseAlphabeticSorter.java",
+        "type" : "file",
+        "lineNumber" : 0
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.line.Line",
+        "file" : "line/Line.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Import"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.sorting.ReverseAlphabeticSorter.sortLines.sortedLines",
+        "file" : "sorting/ReverseAlphabeticSorter.java",
+        "type" : "var",
+        "lineNumber" : 26
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.line.Line",
+        "file" : "line/Line.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Use"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.sorting.ReverseAlphabeticSorter.sortLines.sortedLines",
+        "file" : "sorting/ReverseAlphabeticSorter.java",
+        "type" : "var",
+        "lineNumber" : 3
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.line.Line",
+        "file" : "line/Line.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Parameter"
+    } ]
+  }, {
+    "src" : 23,
+    "dest" : 14,
+    "values" : {
+      "Call" : 1.0,
+      "Import" : 1.0,
+      "Create" : 1.0,
+      "Use" : 1.0,
+      "Parameter" : 1.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.textparsing.DelimTextParser.parseSentencesAsLines",
+        "file" : "textparsing/DelimTextParser.java",
+        "type" : "function",
+        "lineNumber" : 19
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.line.Line",
+        "file" : "line/Line.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "textparsing/DelimTextParser.java",
+        "file" : "textparsing/DelimTextParser.java",
+        "type" : "file",
+        "lineNumber" : 0
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.line.Line",
+        "file" : "line/Line.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Import"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.textparsing.DelimTextParser.parseSentencesAsLines",
+        "file" : "textparsing/DelimTextParser.java",
+        "type" : "function",
+        "lineNumber" : 19
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.line.Line",
+        "file" : "line/Line.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Create"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.textparsing.DelimTextParser.parseSentencesAsLines.linesList",
+        "file" : "textparsing/DelimTextParser.java",
+        "type" : "var",
+        "lineNumber" : 16
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.line.Line",
+        "file" : "line/Line.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Use"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.textparsing.DelimTextParser.parseSentencesAsLines.linesList",
+        "file" : "textparsing/DelimTextParser.java",
+        "type" : "var",
+        "lineNumber" : 3
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.line.Line",
+        "file" : "line/Line.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Parameter"
+    } ]
+  }, {
+    "src" : 20,
+    "dest" : 21,
+    "values" : {
+      "Extend" : 1.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.sorting.ReverseAlphabeticSorter",
+        "file" : "sorting/ReverseAlphabeticSorter.java",
+        "type" : "type",
+        "lineNumber" : 8
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sorting.SortingStrategy",
+        "file" : "sorting/SortingStrategy.java",
+        "type" : "type",
+        "lineNumber" : 6
+      },
+      "type" : "Extend"
+    } ]
+  }, {
+    "src" : 0,
+    "dest" : 7,
+    "values" : {
+      "Use" : 6.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.getProcessorFromCommand",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 108
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.io.Commands.KWIC",
+        "file" : "io/Commands.java",
+        "type" : "var",
+        "lineNumber" : 5
+      },
+      "type" : "Use"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.getProcessorFromCommand",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 108
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.io.Commands",
+        "file" : "io/Commands.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Use"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.getProcessorFromCommand",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 110
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.io.Commands.KEYWORD_SEARCH",
+        "file" : "io/Commands.java",
+        "type" : "var",
+        "lineNumber" : 6
+      },
+      "type" : "Use"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.getProcessorFromCommand",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 110
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.io.Commands",
+        "file" : "io/Commands.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Use"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.getProcessorFromCommand",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 117
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.io.Commands.INDEX_GENERATION",
+        "file" : "io/Commands.java",
+        "type" : "var",
+        "lineNumber" : 7
+      },
+      "type" : "Use"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.getProcessorFromCommand",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 117
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.io.Commands",
+        "file" : "io/Commands.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Use"
+    } ]
+  }, {
+    "src" : 0,
+    "dest" : 8,
+    "values" : {
+      "Call" : 2.0,
+      "Create" : 1.0,
+      "Contain" : 1.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.fromConfig",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 47
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.io.CommandsAsStringListInput",
+        "file" : "io/CommandsAsStringListInput.java",
+        "type" : "type",
+        "lineNumber" : 7
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.fromConfig",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 48
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.io.CommandsAsStringListInput.addCommand",
+        "file" : "io/CommandsAsStringListInput.java",
+        "type" : "function",
+        "lineNumber" : 11
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.fromConfig",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 47
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.io.CommandsAsStringListInput",
+        "file" : "io/CommandsAsStringListInput.java",
+        "type" : "type",
+        "lineNumber" : 7
+      },
+      "type" : "Create"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.fromConfig",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 47
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.io.CommandsAsStringListInput",
+        "file" : "io/CommandsAsStringListInput.java",
+        "type" : "type",
+        "lineNumber" : 7
+      },
+      "type" : "Contain"
+    } ]
+  }, {
+    "src" : 23,
+    "dest" : 22,
+    "values" : {
+      "Extend" : 1.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.textparsing.DelimTextParser",
+        "file" : "textparsing/DelimTextParser.java",
+        "type" : "type",
+        "lineNumber" : 7
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.textparsing.AbstractTextParser",
+        "file" : "textparsing/AbstractTextParser.java",
+        "type" : "type",
+        "lineNumber" : 6
+      },
+      "type" : "Extend"
+    } ]
+  }, {
+    "src" : 0,
+    "dest" : 3,
+    "values" : {
+      "Call" : 10.0,
+      "Use" : 10.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.fromConfig",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 38
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.OptionReader.readOptions",
+        "file" : "OptionReader.java",
+        "type" : "function",
+        "lineNumber" : 17
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.fromConfig",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 40
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.OptionReader.getString",
+        "file" : "OptionReader.java",
+        "type" : "function",
+        "lineNumber" : 48
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.fromConfig",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 41
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.OptionReader.getString",
+        "file" : "OptionReader.java",
+        "type" : "function",
+        "lineNumber" : 48
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.fromConfig",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 42
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.OptionReader.getString",
+        "file" : "OptionReader.java",
+        "type" : "function",
+        "lineNumber" : 48
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.fromConfig",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 43
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.OptionReader.getString",
+        "file" : "OptionReader.java",
+        "type" : "function",
+        "lineNumber" : 48
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.fromConfig",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 44
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.OptionReader.getString",
+        "file" : "OptionReader.java",
+        "type" : "function",
+        "lineNumber" : 48
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.fromConfig",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 45
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.OptionReader.getString",
+        "file" : "OptionReader.java",
+        "type" : "function",
+        "lineNumber" : 48
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.fromConfig",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 50
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.OptionReader.getObjectFromKey",
+        "file" : "OptionReader.java",
+        "type" : "function",
+        "lineNumber" : 34
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.fromConfig",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 52
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.OptionReader.getObjectFromKey",
+        "file" : "OptionReader.java",
+        "type" : "function",
+        "lineNumber" : 34
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.fromConfig",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 54
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.OptionReader.getString",
+        "file" : "OptionReader.java",
+        "type" : "function",
+        "lineNumber" : 48
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.fromConfig",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 38
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.OptionReader",
+        "file" : "OptionReader.java",
+        "type" : "type",
+        "lineNumber" : 9
+      },
+      "type" : "Use"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.fromConfig",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 40
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.OptionReader",
+        "file" : "OptionReader.java",
+        "type" : "type",
+        "lineNumber" : 9
+      },
+      "type" : "Use"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.fromConfig",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 41
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.OptionReader",
+        "file" : "OptionReader.java",
+        "type" : "type",
+        "lineNumber" : 9
+      },
+      "type" : "Use"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.fromConfig",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 42
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.OptionReader",
+        "file" : "OptionReader.java",
+        "type" : "type",
+        "lineNumber" : 9
+      },
+      "type" : "Use"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.fromConfig",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 43
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.OptionReader",
+        "file" : "OptionReader.java",
+        "type" : "type",
+        "lineNumber" : 9
+      },
+      "type" : "Use"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.fromConfig",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 44
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.OptionReader",
+        "file" : "OptionReader.java",
+        "type" : "type",
+        "lineNumber" : 9
+      },
+      "type" : "Use"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.fromConfig",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 45
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.OptionReader",
+        "file" : "OptionReader.java",
+        "type" : "type",
+        "lineNumber" : 9
+      },
+      "type" : "Use"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.fromConfig",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 50
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.OptionReader",
+        "file" : "OptionReader.java",
+        "type" : "type",
+        "lineNumber" : 9
+      },
+      "type" : "Use"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.fromConfig",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 52
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.OptionReader",
+        "file" : "OptionReader.java",
+        "type" : "type",
+        "lineNumber" : 9
+      },
+      "type" : "Use"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.fromConfig",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 54
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.OptionReader",
+        "file" : "OptionReader.java",
+        "type" : "type",
+        "lineNumber" : 9
+      },
+      "type" : "Use"
+    } ]
+  }, {
+    "src" : 0,
+    "dest" : 4,
+    "values" : {
+      "Cast" : 1.0,
+      "Call" : 2.0,
+      "Use" : 1.0,
+      "Parameter" : 1.0,
+      "Contain" : 2.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.fromConfig",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 50
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.fileparsing.AbstractFileParser",
+        "file" : "fileparsing/AbstractFileParser.java",
+        "type" : "type",
+        "lineNumber" : 8
+      },
+      "type" : "Cast"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.loadFile",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 90
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.fileparsing.AbstractFileParser.setFilePath",
+        "file" : "fileparsing/AbstractFileParser.java",
+        "type" : "function",
+        "lineNumber" : 22
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.loadFile",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 93
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.fileparsing.AbstractFileParser.getSentencesAsLines",
+        "file" : "fileparsing/AbstractFileParser.java",
+        "type" : "function",
+        "lineNumber" : 26
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.KWICDriver",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 26
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.fileparsing.AbstractFileParser",
+        "file" : "fileparsing/AbstractFileParser.java",
+        "type" : "type",
+        "lineNumber" : 8
+      },
+      "type" : "Use"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.KWICDriver",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 24
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.fileparsing.AbstractFileParser",
+        "file" : "fileparsing/AbstractFileParser.java",
+        "type" : "type",
+        "lineNumber" : 8
+      },
+      "type" : "Parameter"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver",
+        "file" : "KWICDriver.java",
+        "type" : "type",
+        "lineNumber" : 14
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.fileparsing.AbstractFileParser",
+        "file" : "fileparsing/AbstractFileParser.java",
+        "type" : "type",
+        "lineNumber" : 8
+      },
+      "type" : "Contain"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.fromConfig",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 50
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.fileparsing.AbstractFileParser",
+        "file" : "fileparsing/AbstractFileParser.java",
+        "type" : "type",
+        "lineNumber" : 8
+      },
+      "type" : "Contain"
+    } ]
+  }, {
+    "src" : 21,
+    "dest" : 14,
+    "values" : {
+      "Import" : 1.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "sorting/SortingStrategy.java",
+        "file" : "sorting/SortingStrategy.java",
+        "type" : "file",
+        "lineNumber" : 0
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.line.Line",
+        "file" : "line/Line.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Import"
+    } ]
+  }, {
+    "src" : 4,
+    "dest" : 14,
+    "values" : {
+      "Import" : 1.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "fileparsing/AbstractFileParser.java",
+        "file" : "fileparsing/AbstractFileParser.java",
+        "type" : "file",
+        "lineNumber" : 0
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.line.Line",
+        "file" : "line/Line.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Import"
+    } ]
+  }, {
+    "src" : 5,
+    "dest" : 22,
+    "values" : {
+      "Call" : 1.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.fileparsing.CsvFileParser.getSentencesAsLines",
+        "file" : "fileparsing/CsvFileParser.java",
+        "type" : "function",
+        "lineNumber" : 21
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.textparsing.AbstractTextParser.parseSentencesAsLines",
+        "file" : "textparsing/AbstractTextParser.java",
+        "type" : "function",
+        "lineNumber" : 7
+      },
+      "type" : "Call"
+    } ]
+  }, {
+    "src" : 18,
+    "dest" : 14,
+    "values" : {
+      "Import" : 1.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "sentenceprocessing/KeywordSearch.java",
+        "file" : "sentenceprocessing/KeywordSearch.java",
+        "type" : "file",
+        "lineNumber" : 0
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.line.Line",
+        "file" : "line/Line.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Import"
+    } ]
+  }, {
+    "src" : 5,
+    "dest" : 23,
+    "values" : {
+      "Call" : 1.0,
+      "Import" : 1.0,
+      "Create" : 1.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.fileparsing.CsvFileParser.CsvFileParser",
+        "file" : "fileparsing/CsvFileParser.java",
+        "type" : "function",
+        "lineNumber" : 15
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.textparsing.DelimTextParser",
+        "file" : "textparsing/DelimTextParser.java",
+        "type" : "type",
+        "lineNumber" : 7
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "fileparsing/CsvFileParser.java",
+        "file" : "fileparsing/CsvFileParser.java",
+        "type" : "file",
+        "lineNumber" : 0
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.textparsing.DelimTextParser",
+        "file" : "textparsing/DelimTextParser.java",
+        "type" : "type",
+        "lineNumber" : 7
+      },
+      "type" : "Import"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.fileparsing.CsvFileParser.CsvFileParser",
+        "file" : "fileparsing/CsvFileParser.java",
+        "type" : "function",
+        "lineNumber" : 15
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.textparsing.DelimTextParser",
+        "file" : "textparsing/DelimTextParser.java",
+        "type" : "type",
+        "lineNumber" : 7
+      },
+      "type" : "Create"
+    } ]
+  }, {
+    "src" : 18,
+    "dest" : 15,
+    "values" : {
+      "Call" : 1.0,
+      "Extend" : 1.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.KeywordSearch.KeywordSearch",
+        "file" : "sentenceprocessing/KeywordSearch.java",
+        "type" : "function",
+        "lineNumber" : 13
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.AbstractSentencesProcessor",
+        "file" : "sentenceprocessing/AbstractSentencesProcessor.java",
+        "type" : "type",
+        "lineNumber" : 8
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.KeywordSearch",
+        "file" : "sentenceprocessing/KeywordSearch.java",
+        "type" : "type",
+        "lineNumber" : 9
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.AbstractSentencesProcessor",
+        "file" : "sentenceprocessing/AbstractSentencesProcessor.java",
+        "type" : "type",
+        "lineNumber" : 8
+      },
+      "type" : "Extend"
+    } ]
+  }, {
+    "src" : 19,
+    "dest" : 21,
+    "values" : {
+      "Extend" : 1.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.sorting.AlphabeticSorter",
+        "file" : "sorting/AlphabeticSorter.java",
+        "type" : "type",
+        "lineNumber" : 8
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sorting.SortingStrategy",
+        "file" : "sorting/SortingStrategy.java",
+        "type" : "type",
+        "lineNumber" : 6
+      },
+      "type" : "Extend"
+    } ]
+  }, {
+    "src" : 2,
+    "dest" : 0,
+    "values" : {
+      "Call" : 2.0,
+      "Use" : 1.0,
+      "Contain" : 1.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.Main.main",
+        "file" : "Main.java",
+        "type" : "function",
+        "lineNumber" : 31
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.fromConfig",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 37
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.Main.main",
+        "file" : "Main.java",
+        "type" : "function",
+        "lineNumber" : 32
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.run",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 127
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.Main.main",
+        "file" : "Main.java",
+        "type" : "function",
+        "lineNumber" : 31
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver",
+        "file" : "KWICDriver.java",
+        "type" : "type",
+        "lineNumber" : 13
+      },
+      "type" : "Use"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.Main.main",
+        "file" : "Main.java",
+        "type" : "function",
+        "lineNumber" : 31
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver",
+        "file" : "KWICDriver.java",
+        "type" : "type",
+        "lineNumber" : 13
+      },
+      "type" : "Contain"
+    } ]
+  }, {
+    "src" : 0,
+    "dest" : 20,
+    "values" : {
+      "Call" : 1.0,
+      "Use" : 1.0,
+      "Create" : 1.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.fromConfig",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 62
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sorting.ReverseAlphabeticSorter",
+        "file" : "sorting/ReverseAlphabeticSorter.java",
+        "type" : "type",
+        "lineNumber" : 8
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.fromConfig",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 62
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sorting.ReverseAlphabeticSorter",
+        "file" : "sorting/ReverseAlphabeticSorter.java",
+        "type" : "type",
+        "lineNumber" : 8
+      },
+      "type" : "Use"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.fromConfig",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 62
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sorting.ReverseAlphabeticSorter",
+        "file" : "sorting/ReverseAlphabeticSorter.java",
+        "type" : "type",
+        "lineNumber" : 8
+      },
+      "type" : "Create"
+    } ]
+  }, {
+    "src" : 0,
+    "dest" : 21,
+    "values" : {
+      "Use" : 1.0,
+      "Parameter" : 1.0,
+      "Contain" : 2.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.KWICDriver",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 29
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sorting.SortingStrategy",
+        "file" : "sorting/SortingStrategy.java",
+        "type" : "type",
+        "lineNumber" : 6
+      },
+      "type" : "Use"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.KWICDriver",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 24
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sorting.SortingStrategy",
+        "file" : "sorting/SortingStrategy.java",
+        "type" : "type",
+        "lineNumber" : 6
+      },
+      "type" : "Parameter"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver",
+        "file" : "KWICDriver.java",
+        "type" : "type",
+        "lineNumber" : 17
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sorting.SortingStrategy",
+        "file" : "sorting/SortingStrategy.java",
+        "type" : "type",
+        "lineNumber" : 6
+      },
+      "type" : "Contain"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.fromConfig",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 58
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sorting.SortingStrategy",
+        "file" : "sorting/SortingStrategy.java",
+        "type" : "type",
+        "lineNumber" : 6
+      },
+      "type" : "Contain"
+    } ]
+  }, {
+    "src" : 22,
+    "dest" : 14,
+    "values" : {
+      "Import" : 1.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "textparsing/AbstractTextParser.java",
+        "file" : "textparsing/AbstractTextParser.java",
+        "type" : "file",
+        "lineNumber" : 0
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.line.Line",
+        "file" : "line/Line.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Import"
+    } ]
+  }, {
+    "src" : 6,
+    "dest" : 23,
+    "values" : {
+      "Call" : 1.0,
+      "Import" : 1.0,
+      "Create" : 1.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.fileparsing.PlaintextFileParser.PlaintextFileParser",
+        "file" : "fileparsing/PlaintextFileParser.java",
+        "type" : "function",
+        "lineNumber" : 14
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.textparsing.DelimTextParser",
+        "file" : "textparsing/DelimTextParser.java",
+        "type" : "type",
+        "lineNumber" : 7
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "fileparsing/PlaintextFileParser.java",
+        "file" : "fileparsing/PlaintextFileParser.java",
+        "type" : "file",
+        "lineNumber" : 0
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.textparsing.DelimTextParser",
+        "file" : "textparsing/DelimTextParser.java",
+        "type" : "type",
+        "lineNumber" : 7
+      },
+      "type" : "Import"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.fileparsing.PlaintextFileParser.PlaintextFileParser",
+        "file" : "fileparsing/PlaintextFileParser.java",
+        "type" : "function",
+        "lineNumber" : 14
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.textparsing.DelimTextParser",
+        "file" : "textparsing/DelimTextParser.java",
+        "type" : "type",
+        "lineNumber" : 7
+      },
+      "type" : "Create"
+    } ]
+  }, {
+    "src" : 6,
+    "dest" : 22,
+    "values" : {
+      "Call" : 1.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.fileparsing.PlaintextFileParser.getSentencesAsLines",
+        "file" : "fileparsing/PlaintextFileParser.java",
+        "type" : "function",
+        "lineNumber" : 20
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.textparsing.AbstractTextParser.parseSentencesAsLines",
+        "file" : "textparsing/AbstractTextParser.java",
+        "type" : "function",
+        "lineNumber" : 7
+      },
+      "type" : "Call"
+    } ]
+  }, {
+    "src" : 2,
+    "dest" : 7,
+    "values" : {
+      "Use" : 2.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.Main.main",
+        "file" : "Main.java",
+        "type" : "function",
+        "lineNumber" : 15
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.io.Commands.KEYWORD_SEARCH",
+        "file" : "io/Commands.java",
+        "type" : "var",
+        "lineNumber" : 6
+      },
+      "type" : "Use"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.Main.main",
+        "file" : "Main.java",
+        "type" : "function",
+        "lineNumber" : 15
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.io.Commands",
+        "file" : "io/Commands.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Use"
+    } ]
+  }, {
+    "src" : 4,
+    "dest" : 22,
+    "values" : {
+      "Import" : 1.0,
+      "Use" : 2.0,
+      "Parameter" : 2.0,
+      "Contain" : 1.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "fileparsing/AbstractFileParser.java",
+        "file" : "fileparsing/AbstractFileParser.java",
+        "type" : "file",
+        "lineNumber" : 0
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.textparsing.AbstractTextParser",
+        "file" : "textparsing/AbstractTextParser.java",
+        "type" : "type",
+        "lineNumber" : 6
+      },
+      "type" : "Import"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.fileparsing.AbstractFileParser.AbstractFileParser",
+        "file" : "fileparsing/AbstractFileParser.java",
+        "type" : "function",
+        "lineNumber" : 15
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.textparsing.AbstractTextParser",
+        "file" : "textparsing/AbstractTextParser.java",
+        "type" : "type",
+        "lineNumber" : 6
+      },
+      "type" : "Use"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.fileparsing.AbstractFileParser.setTextParser",
+        "file" : "fileparsing/AbstractFileParser.java",
+        "type" : "function",
+        "lineNumber" : 19
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.textparsing.AbstractTextParser",
+        "file" : "textparsing/AbstractTextParser.java",
+        "type" : "type",
+        "lineNumber" : 6
+      },
+      "type" : "Use"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.fileparsing.AbstractFileParser.AbstractFileParser",
+        "file" : "fileparsing/AbstractFileParser.java",
+        "type" : "function",
+        "lineNumber" : 14
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.textparsing.AbstractTextParser",
+        "file" : "textparsing/AbstractTextParser.java",
+        "type" : "type",
+        "lineNumber" : 6
+      },
+      "type" : "Parameter"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.fileparsing.AbstractFileParser.setTextParser",
+        "file" : "fileparsing/AbstractFileParser.java",
+        "type" : "function",
+        "lineNumber" : 18
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.textparsing.AbstractTextParser",
+        "file" : "textparsing/AbstractTextParser.java",
+        "type" : "type",
+        "lineNumber" : 6
+      },
+      "type" : "Parameter"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.fileparsing.AbstractFileParser",
+        "file" : "fileparsing/AbstractFileParser.java",
+        "type" : "type",
+        "lineNumber" : 10
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.textparsing.AbstractTextParser",
+        "file" : "textparsing/AbstractTextParser.java",
+        "type" : "type",
+        "lineNumber" : 6
+      },
+      "type" : "Contain"
+    } ]
+  }, {
+    "src" : 3,
+    "dest" : 1,
+    "values" : {
+      "Call" : 3.0,
+      "Create" : 1.0,
+      "Contain" : 1.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.OptionReader",
+        "file" : "OptionReader.java",
+        "type" : "type",
+        "lineNumber" : 11
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.KWICObjectLoader",
+        "file" : "KWICObjectLoader.java",
+        "type" : "type",
+        "lineNumber" : 6
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.OptionReader.getObjectFromKey",
+        "file" : "OptionReader.java",
+        "type" : "function",
+        "lineNumber" : 39
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.KWICObjectLoader.loadObject",
+        "file" : "KWICObjectLoader.java",
+        "type" : "function",
+        "lineNumber" : 8
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.OptionReader.getObjectFromStr",
+        "file" : "OptionReader.java",
+        "type" : "function",
+        "lineNumber" : 45
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.KWICObjectLoader.loadObject",
+        "file" : "KWICObjectLoader.java",
+        "type" : "function",
+        "lineNumber" : 8
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.OptionReader",
+        "file" : "OptionReader.java",
+        "type" : "type",
+        "lineNumber" : 11
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.KWICObjectLoader",
+        "file" : "KWICObjectLoader.java",
+        "type" : "type",
+        "lineNumber" : 6
+      },
+      "type" : "Create"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.OptionReader",
+        "file" : "OptionReader.java",
+        "type" : "type",
+        "lineNumber" : 11
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.KWICObjectLoader",
+        "file" : "KWICObjectLoader.java",
+        "type" : "type",
+        "lineNumber" : 6
+      },
+      "type" : "Contain"
+    } ]
+  }, {
+    "src" : 0,
+    "dest" : 13,
+    "values" : {
+      "Cast" : 1.0,
+      "Call" : 1.0,
+      "Use" : 1.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.fromConfig",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 55
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.io.TxtOutput",
+        "file" : "io/TxtOutput.java",
+        "type" : "type",
+        "lineNumber" : 7
+      },
+      "type" : "Cast"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.fromConfig",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 55
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.io.TxtOutput.setOutputFilename",
+        "file" : "io/TxtOutput.java",
+        "type" : "function",
+        "lineNumber" : 11
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.fromConfig",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 55
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.io.TxtOutput",
+        "file" : "io/TxtOutput.java",
+        "type" : "type",
+        "lineNumber" : 7
+      },
+      "type" : "Use"
+    } ]
+  }, {
+    "src" : 0,
+    "dest" : 14,
+    "values" : {
+      "Import" : 1.0,
+      "Use" : 1.0,
+      "Parameter" : 1.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "KWICDriver.java",
+        "file" : "KWICDriver.java",
+        "type" : "file",
+        "lineNumber" : 0
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.line.Line",
+        "file" : "line/Line.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Import"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.lines",
+        "file" : "KWICDriver.java",
+        "type" : "var",
+        "lineNumber" : 22
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.line.Line",
+        "file" : "line/Line.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Use"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.lines",
+        "file" : "KWICDriver.java",
+        "type" : "var",
+        "lineNumber" : 3
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.line.Line",
+        "file" : "line/Line.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Parameter"
+    } ]
+  }, {
+    "src" : 0,
+    "dest" : 15,
+    "values" : {
+      "Call" : 1.0,
+      "Return" : 1.0,
+      "Contain" : 2.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.run",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 144
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.AbstractSentencesProcessor.getProcessedOutput",
+        "file" : "sentenceprocessing/AbstractSentencesProcessor.java",
+        "type" : "function",
+        "lineNumber" : 25
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.getProcessorFromCommand",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 106
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.AbstractSentencesProcessor",
+        "file" : "sentenceprocessing/AbstractSentencesProcessor.java",
+        "type" : "type",
+        "lineNumber" : 8
+      },
+      "type" : "Return"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.getProcessorFromCommand",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 107
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.AbstractSentencesProcessor",
+        "file" : "sentenceprocessing/AbstractSentencesProcessor.java",
+        "type" : "type",
+        "lineNumber" : 8
+      },
+      "type" : "Contain"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.run",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 139
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.AbstractSentencesProcessor",
+        "file" : "sentenceprocessing/AbstractSentencesProcessor.java",
+        "type" : "type",
+        "lineNumber" : 8
+      },
+      "type" : "Contain"
+    } ]
+  }, {
+    "src" : 0,
+    "dest" : 16,
+    "values" : {
+      "Call" : 1.0,
+      "Use" : 1.0,
+      "Create" : 1.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.getProcessorFromCommand",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 118
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.IndexGeneration",
+        "file" : "sentenceprocessing/IndexGeneration.java",
+        "type" : "type",
+        "lineNumber" : 11
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.getProcessorFromCommand",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 118
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.IndexGeneration",
+        "file" : "sentenceprocessing/IndexGeneration.java",
+        "type" : "type",
+        "lineNumber" : 11
+      },
+      "type" : "Use"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.getProcessorFromCommand",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 118
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.IndexGeneration",
+        "file" : "sentenceprocessing/IndexGeneration.java",
+        "type" : "type",
+        "lineNumber" : 11
+      },
+      "type" : "Create"
+    } ]
+  }, {
+    "src" : 0,
+    "dest" : 17,
+    "values" : {
+      "Call" : 1.0,
+      "Use" : 1.0,
+      "Create" : 1.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.getProcessorFromCommand",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 109
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.KWICProcessor",
+        "file" : "sentenceprocessing/KWICProcessor.java",
+        "type" : "type",
+        "lineNumber" : 11
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.getProcessorFromCommand",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 109
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.KWICProcessor",
+        "file" : "sentenceprocessing/KWICProcessor.java",
+        "type" : "type",
+        "lineNumber" : 11
+      },
+      "type" : "Use"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.getProcessorFromCommand",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 109
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.KWICProcessor",
+        "file" : "sentenceprocessing/KWICProcessor.java",
+        "type" : "type",
+        "lineNumber" : 11
+      },
+      "type" : "Create"
+    } ]
+  }, {
+    "src" : 0,
+    "dest" : 18,
+    "values" : {
+      "Call" : 1.0,
+      "Use" : 1.0,
+      "Create" : 1.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.getProcessorFromCommand",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 116
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.KeywordSearch",
+        "file" : "sentenceprocessing/KeywordSearch.java",
+        "type" : "type",
+        "lineNumber" : 9
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.getProcessorFromCommand",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 116
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.KeywordSearch",
+        "file" : "sentenceprocessing/KeywordSearch.java",
+        "type" : "type",
+        "lineNumber" : 9
+      },
+      "type" : "Use"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.getProcessorFromCommand",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 116
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.KeywordSearch",
+        "file" : "sentenceprocessing/KeywordSearch.java",
+        "type" : "type",
+        "lineNumber" : 9
+      },
+      "type" : "Create"
+    } ]
+  }, {
+    "src" : 0,
+    "dest" : 19,
+    "values" : {
+      "Call" : 1.0,
+      "Use" : 1.0,
+      "Create" : 1.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.fromConfig",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 60
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sorting.AlphabeticSorter",
+        "file" : "sorting/AlphabeticSorter.java",
+        "type" : "type",
+        "lineNumber" : 8
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.fromConfig",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 60
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sorting.AlphabeticSorter",
+        "file" : "sorting/AlphabeticSorter.java",
+        "type" : "type",
+        "lineNumber" : 8
+      },
+      "type" : "Use"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.fromConfig",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 60
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sorting.AlphabeticSorter",
+        "file" : "sorting/AlphabeticSorter.java",
+        "type" : "type",
+        "lineNumber" : 8
+      },
+      "type" : "Create"
+    } ]
+  }, {
+    "src" : 13,
+    "dest" : 12,
+    "values" : {
+      "Extend" : 1.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.io.TxtOutput",
+        "file" : "io/TxtOutput.java",
+        "type" : "type",
+        "lineNumber" : 7
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.io.OutputStrategy",
+        "file" : "io/OutputStrategy.java",
+        "type" : "type",
+        "lineNumber" : 5
+      },
+      "type" : "Extend"
+    } ]
+  }, {
+    "src" : 9,
+    "dest" : 11,
+    "values" : {
+      "Extend" : 1.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.io.ConsoleInput",
+        "file" : "io/ConsoleInput.java",
+        "type" : "type",
+        "lineNumber" : 5
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.io.InputStrategy",
+        "file" : "io/InputStrategy.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Extend"
+    } ]
+  }, {
+    "src" : 0,
+    "dest" : 11,
+    "values" : {
+      "Call" : 3.0,
+      "Use" : 1.0,
+      "Parameter" : 1.0,
+      "Contain" : 1.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.getCommand",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 86
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.io.InputStrategy.getCommand",
+        "file" : "io/InputStrategy.java",
+        "type" : "function",
+        "lineNumber" : 6
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.run",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 133
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.io.InputStrategy.open",
+        "file" : "io/InputStrategy.java",
+        "type" : "function",
+        "lineNumber" : 4
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.run",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 147
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.io.InputStrategy.close",
+        "file" : "io/InputStrategy.java",
+        "type" : "function",
+        "lineNumber" : 5
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.KWICDriver",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 27
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.io.InputStrategy",
+        "file" : "io/InputStrategy.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Use"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.KWICDriver",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 24
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.io.InputStrategy",
+        "file" : "io/InputStrategy.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Parameter"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver",
+        "file" : "KWICDriver.java",
+        "type" : "type",
+        "lineNumber" : 15
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.io.InputStrategy",
+        "file" : "io/InputStrategy.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Contain"
+    } ]
+  }, {
+    "src" : 0,
+    "dest" : 12,
+    "values" : {
+      "Cast" : 1.0,
+      "Call" : 6.0,
+      "Use" : 1.0,
+      "Parameter" : 1.0,
+      "Contain" : 2.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.fromConfig",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 52
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.io.OutputStrategy",
+        "file" : "io/OutputStrategy.java",
+        "type" : "type",
+        "lineNumber" : 5
+      },
+      "type" : "Cast"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.loadFile",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 96
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.io.OutputStrategy.display",
+        "file" : "io/OutputStrategy.java",
+        "type" : "function",
+        "lineNumber" : 6
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.displayUsage",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 103
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.io.OutputStrategy.display",
+        "file" : "io/OutputStrategy.java",
+        "type" : "function",
+        "lineNumber" : 6
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.getProcessorFromCommand",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 112
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.io.OutputStrategy.display",
+        "file" : "io/OutputStrategy.java",
+        "type" : "function",
+        "lineNumber" : 6
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.getProcessorFromCommand",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 120
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.io.OutputStrategy.display",
+        "file" : "io/OutputStrategy.java",
+        "type" : "function",
+        "lineNumber" : 6
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.run",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 129
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.io.OutputStrategy.display",
+        "file" : "io/OutputStrategy.java",
+        "type" : "function",
+        "lineNumber" : 6
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.run",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 145
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.io.OutputStrategy.display",
+        "file" : "io/OutputStrategy.java",
+        "type" : "function",
+        "lineNumber" : 6
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.KWICDriver",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 28
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.io.OutputStrategy",
+        "file" : "io/OutputStrategy.java",
+        "type" : "type",
+        "lineNumber" : 5
+      },
+      "type" : "Use"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.KWICDriver",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 24
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.io.OutputStrategy",
+        "file" : "io/OutputStrategy.java",
+        "type" : "type",
+        "lineNumber" : 5
+      },
+      "type" : "Parameter"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver",
+        "file" : "KWICDriver.java",
+        "type" : "type",
+        "lineNumber" : 16
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.io.OutputStrategy",
+        "file" : "io/OutputStrategy.java",
+        "type" : "type",
+        "lineNumber" : 5
+      },
+      "type" : "Contain"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.KWICDriver.fromConfig",
+        "file" : "KWICDriver.java",
+        "type" : "function",
+        "lineNumber" : 52
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.io.OutputStrategy",
+        "file" : "io/OutputStrategy.java",
+        "type" : "type",
+        "lineNumber" : 5
+      },
+      "type" : "Contain"
+    } ]
+  }, {
+    "src" : 16,
+    "dest" : 14,
+    "values" : {
+      "Call" : 3.0,
+      "Import" : 1.0,
+      "Contain" : 1.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.IndexGeneration.getProcessedOutput",
+        "file" : "sentenceprocessing/IndexGeneration.java",
+        "type" : "function",
+        "lineNumber" : 24
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.line.Line.getContent",
+        "file" : "line/Line.java",
+        "type" : "function",
+        "lineNumber" : 11
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.IndexGeneration.getProcessedOutput",
+        "file" : "sentenceprocessing/IndexGeneration.java",
+        "type" : "function",
+        "lineNumber" : 29
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.line.Line.getLineNumber",
+        "file" : "line/Line.java",
+        "type" : "function",
+        "lineNumber" : 15
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.IndexGeneration.getProcessedOutput",
+        "file" : "sentenceprocessing/IndexGeneration.java",
+        "type" : "function",
+        "lineNumber" : 30
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.line.Line.getLineNumber",
+        "file" : "line/Line.java",
+        "type" : "function",
+        "lineNumber" : 15
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "sentenceprocessing/IndexGeneration.java",
+        "file" : "sentenceprocessing/IndexGeneration.java",
+        "type" : "file",
+        "lineNumber" : 0
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.line.Line",
+        "file" : "line/Line.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Import"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.IndexGeneration.getProcessedOutput",
+        "file" : "sentenceprocessing/IndexGeneration.java",
+        "type" : "function",
+        "lineNumber" : 23
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.line.Line",
+        "file" : "line/Line.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Contain"
+    } ]
+  }, {
+    "src" : 16,
+    "dest" : 15,
+    "values" : {
+      "Call" : 3.0,
+      "Extend" : 1.0,
+      "Use" : 1.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.IndexGeneration.IndexGeneration",
+        "file" : "sentenceprocessing/IndexGeneration.java",
+        "type" : "function",
+        "lineNumber" : 16
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.AbstractSentencesProcessor",
+        "file" : "sentenceprocessing/AbstractSentencesProcessor.java",
+        "type" : "type",
+        "lineNumber" : 8
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.IndexGeneration.getProcessedOutput",
+        "file" : "sentenceprocessing/IndexGeneration.java",
+        "type" : "function",
+        "lineNumber" : 26
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.AbstractSentencesProcessor.isWordTrivial",
+        "file" : "sentenceprocessing/AbstractSentencesProcessor.java",
+        "type" : "function",
+        "lineNumber" : 21
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.IndexGeneration.getProcessedOutput",
+        "file" : "sentenceprocessing/IndexGeneration.java",
+        "type" : "function",
+        "lineNumber" : 29
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.AbstractSentencesProcessor.isWordTrivial",
+        "file" : "sentenceprocessing/AbstractSentencesProcessor.java",
+        "type" : "function",
+        "lineNumber" : 21
+      },
+      "type" : "Call"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.IndexGeneration",
+        "file" : "sentenceprocessing/IndexGeneration.java",
+        "type" : "type",
+        "lineNumber" : 11
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.AbstractSentencesProcessor",
+        "file" : "sentenceprocessing/AbstractSentencesProcessor.java",
+        "type" : "type",
+        "lineNumber" : 8
+      },
+      "type" : "Extend"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.IndexGeneration.getProcessedOutput",
+        "file" : "sentenceprocessing/IndexGeneration.java",
+        "type" : "function",
+        "lineNumber" : 34
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.sentenceprocessing.AbstractSentencesProcessor.sortingStrategy",
+        "file" : "sentenceprocessing/AbstractSentencesProcessor.java",
+        "type" : "var",
+        "lineNumber" : 11
+      },
+      "type" : "Use"
+    } ]
+  }, {
+    "src" : 19,
+    "dest" : 14,
+    "values" : {
+      "Import" : 1.0,
+      "Use" : 1.0,
+      "Parameter" : 1.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "sorting/AlphabeticSorter.java",
+        "file" : "sorting/AlphabeticSorter.java",
+        "type" : "file",
+        "lineNumber" : 0
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.line.Line",
+        "file" : "line/Line.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Import"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.sorting.AlphabeticSorter.sortLines.sortedLines",
+        "file" : "sorting/AlphabeticSorter.java",
+        "type" : "var",
+        "lineNumber" : 26
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.line.Line",
+        "file" : "line/Line.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Use"
+    }, {
+      "src" : {
+        "object" : "edu.drexel.se311.kwic.sorting.AlphabeticSorter.sortLines.sortedLines",
+        "file" : "sorting/AlphabeticSorter.java",
+        "type" : "var",
+        "lineNumber" : 3
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.line.Line",
+        "file" : "line/Line.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Parameter"
+    } ]
+  }, {
+    "src" : 6,
+    "dest" : 14,
+    "values" : {
+      "Import" : 1.0
+    },
+    "details" : [ {
+      "src" : {
+        "object" : "fileparsing/PlaintextFileParser.java",
+        "file" : "fileparsing/PlaintextFileParser.java",
+        "type" : "file",
+        "lineNumber" : 0
+      },
+      "dest" : {
+        "object" : "edu.drexel.se311.kwic.line.Line",
+        "file" : "line/Line.java",
+        "type" : "type",
+        "lineNumber" : 3
+      },
+      "type" : "Import"
+    } ]
+  } ]
+}
