@@ -62,6 +62,12 @@ java -jar hw2.jar "$@"
 - Added more abstract fields to KWICDriver
 - Chose not to do anything with keywords for circular shifts since it made more sense to me.
 - For txt output, the folder must already exist
+- Removed unnecessary concrete class in textparsing
+
+### Submissions
+
+- UML is in PlantUML.md
+- DSM outputs are in ./hw1 and ./hw2
 
 
 
