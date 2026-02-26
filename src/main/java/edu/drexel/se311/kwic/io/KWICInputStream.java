@@ -27,6 +27,10 @@ public class KWICInputStream extends InputStrategy {
         String userInput = null;
         try {
             userInput = reader.readLine();
+            if (userInput == null) {
+                System.out.println("Client closed connection.");
+            }
+            System.out.println("Received command: " + userInput);
         } catch (Exception e) {
             e.printStackTrace();
         }
