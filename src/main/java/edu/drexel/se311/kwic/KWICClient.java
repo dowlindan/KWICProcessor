@@ -93,6 +93,14 @@ public class KWICClient {
                 break;
             }
         }
-        input.close();
+        try {
+            writer.close();
+            reader.close();
+            socket.close();
+            input.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
     }
 }
