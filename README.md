@@ -3,24 +3,24 @@ SE311 Course Project
 
 ## Description
 
-This system accepts text files or csv files containing sets of sentences and supports multiple text processing and indexing functions.
-
-## Getting started
-
-Notes for the TA: 
-- This was developed and compiled in WSL Ubuntu with the latest java version.
+This system is a client-server system that ingests text files or csv files containing sets of sentences and supports multiple text processing and indexing functions.
+ 
+## Quick Start Guide (for graders)
 
 ```
-java -jar hw2.jar kwic-processing config.properties``` 
+./runServer.sh server_config.properties
+```
+Then in another terminal:
+```
+./runClient.sh
 ```
 
-should work right away.
 
-To run the system, from the root directory:
+## How to run the system
 
 ### 1. Compile the program
 
-#### Note: This shouldn't be necessary as the submission should have included a pre-compiled out folder and jar file
+#### Note: This shouldn't be necessary as the submission should have included a pre-compiled out folder and jar files
 
 ```
 ./compile.sh
@@ -30,7 +30,8 @@ which runs:
 
 ```
 javac -d "$OUT_DIR" $(find "$SRC_DIR" -name "*.java")
-jar cfve hw2.jar edu.drexel.se311.kwic.Main -C out .
+jar cfve KWICClient.jar edu.drexel.se311.kwic.KWICClient -C out .
+jar cfve KWICServer.jar edu.drexel.se311.kwic.KWICServer -C out .
 ```
 
 where 
@@ -43,13 +44,19 @@ OUT_DIR="out"
 ### 2. Run the program
 
 ```
-./run.sh <kwic-processing|keyword-search|index-generation> <keyword if applicable> <config-filename>
+./runServer.sh server_config.properties
 ```
-
-which runs:
-
+which runs 
 ```
-java -jar hw2.jar "$@"
+java -jar KWICServer.jar "$@"
+```
+Then in another terminal:
+```
+./runClient.sh
+```
+which runs
+```
+java -jar KWICClient.jar "$@"
 ```
 
 ## HW2 Documentation
@@ -64,6 +71,7 @@ java -jar hw2.jar "$@"
 - For txt output, the folder must already exist
 - Removed unnecessary concrete class in textparsing
 
+## HW3 Documentation
 ### Submissions
 
 - UML is in PlantUML.md
