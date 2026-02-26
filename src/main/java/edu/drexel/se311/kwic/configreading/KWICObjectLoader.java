@@ -1,4 +1,4 @@
-package edu.drexel.se311.kwic;
+package edu.drexel.se311.kwic.configreading;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;

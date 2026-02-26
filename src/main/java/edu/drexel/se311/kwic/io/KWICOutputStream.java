@@ -3,15 +3,22 @@ package edu.drexel.se311.kwic.io;
 import java.io.BufferedWriter;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.time.Instant;
 import java.util.List;
 
 public class KWICOutputStream extends OutputStrategy {
     private OutputStream outputStream;
     private BufferedWriter writer;
+    private TxtOutput loggingOutput;
+    private int successfulSearches;
+    private int searchAttempts;
 
-    public KWICOutputStream(OutputStream outputStream) {
+    public KWICOutputStream(OutputStream outputStream, String loggingFile) {
         this.outputStream = outputStream;
         writer = new BufferedWriter(new OutputStreamWriter(outputStream));
+        this.loggingOutput = new TxtOutput();
+        loggingOutput.setOutputFilename(loggingFile);
+        this.successfulSearches = 0;
 
     }
     @Override
@@ -27,11 +34,20 @@ public class KWICOutputStream extends OutputStrategy {
 
     @Override
     public void display(List<String> outputStrings) {
-        StringBuilder sb = new StringBuilder();
+        KWICProtocolMessage message = new KWICProtocolMessage(outputStrings);
+        System.out.println("Sending response to client:\n" + message.toMessageString());
+        logKeywordSearch(message);
+        this.display(message.toMessageString());
+    }
 
-        for (String line : outputStrings) {
-            sb.append(line).append(System.lineSeparator());
+    private void logKeywordSearch(KWICProtocolMessage message) {
+        ServerRequestTracker tracker = ServerRequestTracker.getInstance();
+        tracker.incrementTotalSearches();
+        if (message.getMessageLines() > 1) {
+            tracker.incrementSuccessfulSearches();
         }
-        this.display(sb.toString());
+        loggingOutput.display("[" + Instant.now().toString() + "]" + " Total Searches (since server startup): " + tracker.getTotalSearches());
+        loggingOutput.display("[" + Instant.now().toString() + "]" + " Successful Searches (since server startup): " + tracker.getSuccessfulSearches());
+
     }
 }

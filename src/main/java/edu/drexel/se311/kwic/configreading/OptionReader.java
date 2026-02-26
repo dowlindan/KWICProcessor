@@ -1,4 +1,4 @@
-package edu.drexel.se311.kwic;
+package edu.drexel.se311.kwic.configreading;
 
 import java.io.IOException;
 import java.io.InputStream;

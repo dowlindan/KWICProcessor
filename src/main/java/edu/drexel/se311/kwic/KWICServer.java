@@ -1,5 +1,6 @@
 package edu.drexel.se311.kwic;
 
+import edu.drexel.se311.kwic.configreading.*;
 import edu.drexel.se311.kwic.fileparsing.AbstractFileParser;
 import edu.drexel.se311.kwic.io.*;
 import edu.drexel.se311.kwic.sorting.*;
@@ -10,7 +11,8 @@ import java.util.Set;
 
 public class KWICServer {
     private static final int PORT_NUMBER = 1234;
-    
+    private static final String LOG_FILE = "./outputs/log.txt";
+
     public static void main(String[] args) {
         if (args.length != 1) {
             System.err.println("Usage: (java exec) <config-filename>");
@@ -22,8 +24,10 @@ public class KWICServer {
         try {
             ServerSocket serverSocket = new ServerSocket(PORT_NUMBER);
             while (true) { 
+                System.out.println("Listening for new connections.");
                 Socket client = serverSocket.accept();
-                KWICDriver driver = fromServerConfig(configFilename, client);
+                System.out.println("One client connected with IP: " + client.getInetAddress());
+                KWICDriver driver = fromServerConfig(configFilename, LOG_FILE, client);
                 KWICRequestHandler handler = new KWICRequestHandler(client, driver);
                 handler.start();
             }
@@ -36,7 +40,7 @@ public class KWICServer {
     }
     
 
-    public static KWICDriver fromServerConfig(String configFilename, Socket client) {
+    public static KWICDriver fromServerConfig(String configFilename, String loggingFile, Socket client) {
         OptionReader.readOptions(configFilename);
         
         String inputFile = OptionReader.getString("InputFileName");
@@ -72,7 +76,7 @@ public class KWICServer {
         OutputStrategy outputStrategy;
         try {
             inputStrategy = new KWICInputStream(client.getInputStream());
-            outputStrategy = new KWICOutputStream(client.getOutputStream());
+            outputStrategy = new KWICOutputStream(client.getOutputStream(), loggingFile);
         } catch (Exception e) {
             e.printStackTrace();
             System.exit(1);
