@@ -77,6 +77,20 @@ java -jar KWICClient.jar "$@"
 - UML is in PlantUML.md
 - DSM outputs are in ./hw1 and ./hw2
 
+HW1
+M Score: 54.53%
+Propagation Cost: 21.05%
+Decoupling Level: 54.15%
+
+HW2
+M Score: 67.24%
+Propagation Cost: 16.15%
+Decoupling Level: 59.02%
+
+HW3
+M Score: 67.59%
+Propagation Cost: 13.22%
+Decoupling Level: 58.43%
 
 
 

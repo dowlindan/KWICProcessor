@@ -76,9 +76,18 @@ public class KWICClient {
 
                 List<String> serverResponse = new ArrayList<>();
                 String responseLine;
-                int messageLines = Integer.parseInt(reader.readLine());
+                String messageLinesStr = reader.readLine();
+                if (messageLinesStr == null) {
+                    output.display("Server closed connection.");
+                    break;
+                }
+                int messageLines = Integer.parseInt(messageLinesStr);
                 for (int i = 0; i < messageLines; i ++) {
                     responseLine = reader.readLine();
+                    if (responseLine == null) {
+                        output.display("Server closed connection.");
+                        break;
+                    }
                     System.out.println("Received response line: " + responseLine);
                     serverResponse.add(responseLine);
                 }
