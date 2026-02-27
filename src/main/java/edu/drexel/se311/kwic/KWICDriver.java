@@ -5,8 +5,6 @@ import edu.drexel.se311.kwic.io.*;
 import edu.drexel.se311.kwic.line.Line;
 import edu.drexel.se311.kwic.sentenceprocessing.*;
 import edu.drexel.se311.kwic.sorting.*;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -34,54 +32,6 @@ public class KWICDriver {
         this.loadFile(filename);
     }
 
-    public static KWICDriver fromConfig(String command, String keyword, String configFilename) {
-        OptionReader.readOptions(configFilename);
-        
-        String inputFile = OptionReader.getString("InputFileName");
-        String inputObjString = OptionReader.getString("Input");
-        String outputObjString = OptionReader.getString("Output");
-        String sortingType = OptionReader.getString("Order");
-        String wordFiltering = OptionReader.getString("WordFiltering");
-        String trivialWords = OptionReader.getString("TrivialWords");
-
-        CommandsAsStringListInput cList = new CommandsAsStringListInput();
-        cList.addCommand(command);
-        
-        AbstractFileParser fileParser = (AbstractFileParser) OptionReader.getObjectFromKey(inputObjString);
-
-        OutputStrategy outputStrategy = (OutputStrategy) OptionReader.getObjectFromKey(outputObjString);
-        if ("TxtOutputObj".equals(outputObjString)) {
-            String outputFile = OptionReader.getString("OutputFileName");
-            ((TxtOutput) outputStrategy).setOutputFilename(outputFile);
-        }
-
-        SortingStrategy sortingStrategy;
-        if ("Ascending".equals(sortingType)) {
-            sortingStrategy = new AlphabeticSorter();
-        } else if ("Descending".equals(sortingType)) {
-            sortingStrategy = new ReverseAlphabeticSorter();
-        } else {
-            System.err.println("Unsupported sorting order");
-            System.exit(1);
-            return null;
-        }
-
-        boolean filterWords;
-        if ("Yes".equals(wordFiltering)) {
-            filterWords = true;
-        } else if ("No".equals(wordFiltering)) {
-            filterWords = false;
-        } else {
-            System.err.println("Unsupported word filtering choice");
-            System.exit(1);
-            return null;
-        }
-        
-        Set<String> trivialWordSet = new HashSet<>(Arrays.asList(trivialWords.split(",")));
-        KWICDriver driver = new KWICDriver(inputFile, fileParser, cList, outputStrategy, sortingStrategy, filterWords, trivialWordSet, keyword);
-        return driver;
-    }
-
     public String getCommand() {
         return inputStrategy.getCommand();
     }
@@ -99,26 +49,21 @@ public class KWICDriver {
     
     }
 
-    private void displayUsage() {
-        outputStrategy.display("Usage: (java exec) <kwic-processing|keyword-search|index-generation> <config-filename>");
-    }
-
     private AbstractSentencesProcessor getProcessorFromCommand(String command) {
         AbstractSentencesProcessor processor;
         if (Commands.KWIC.equals(command)) {
                 processor = new KWICProcessor(this.lines, this.filterWords, this.trivialWords, this.sortingStrategy);
         } else if (command.startsWith(Commands.KEYWORD_SEARCH)) {
-            if (keyword.isEmpty()) {
+            String commandKeyword = command.substring(Commands.KEYWORD_SEARCH.length()).trim();
+            if (commandKeyword.isEmpty()) {
                 outputStrategy.display("Keyword search requires a keyword.");
-                displayUsage();
                 return null;
             }
-            processor = new KeywordSearch(this.lines, this.filterWords, this.trivialWords, this.sortingStrategy, this.keyword);
+            processor = new KeywordSearch(this.lines, this.filterWords, this.trivialWords, this.sortingStrategy, commandKeyword);
         } else if (Commands.INDEX_GENERATION.equals(command)) {
-            processor = new IndexGeneration(this.lines, this.filterWords, this.trivialWords, this.sortingStrategy);;
+            processor = new IndexGeneration(this.lines, this.filterWords, this.trivialWords, this.sortingStrategy);
         } else {
             outputStrategy.display("Invalid command.");
-            displayUsage();
             return null;
         }
         return processor;
@@ -138,7 +83,7 @@ public class KWICDriver {
             }
             AbstractSentencesProcessor processor = this.getProcessorFromCommand(command);
             if (processor == null) {
-                break;
+                continue;
             }
             
             List<String> output = processor.getProcessedOutput();

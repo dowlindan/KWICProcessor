@@ -16,5 +16,6 @@ mkdir -p "$OUT_DIR"
 
 echo "Compiling Java sources..."
 javac -d "$OUT_DIR" $(find "$SRC_DIR" -name "*.java")
-jar cfve hw2.jar edu.drexel.se311.kwic.Main -C out .
+jar cfve KWICClient.jar edu.drexel.se311.kwic.KWICClient -C out .
+jar cfve KWICServer.jar edu.drexel.se311.kwic.KWICServer -C out .
 

@@ -32,6 +32,7 @@ public class KeywordSearch extends AbstractSentencesProcessor {
                 processedOutput.add(sentencesWithKeyword + " " + outputLine);
             }
         }
+        this.sortingStrategy.sort(processedOutput);
         processedOutput.add(0, sentencesWithKeyword + " sentence(s) found containing the keyword: " + keyword);
         return processedOutput;
     }

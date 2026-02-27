@@ -1,0 +1,197 @@
+{
+  "@schemaVersion" : "1.0",
+  "name" : "drh-clustering",
+  "structure" : [ {
+    "@type" : "group",
+    "name" : "L0",
+    "nested" : [ {
+      "@type" : "group",
+      "name" : "L0/M0",
+      "nested" : [ {
+        "@type" : "group",
+        "name" : "L0/M0/M0",
+        "nested" : [ {
+          "@type" : "item",
+          "name" : "line/Line.java"
+        } ]
+      }, {
+        "@type" : "group",
+        "name" : "L0/M0/M1",
+        "nested" : [ {
+          "@type" : "item",
+          "name" : "textparsing/AbstractTextParser.java"
+        } ]
+      }, {
+        "@type" : "group",
+        "name" : "L0/M0/M2",
+        "nested" : [ {
+          "@type" : "item",
+          "name" : "fileparsing/AbstractFileParser.java"
+        } ]
+      } ]
+    }, {
+      "@type" : "group",
+      "name" : "L0/M1",
+      "nested" : [ {
+        "@type" : "item",
+        "name" : "io/OutputStrategy.java"
+      } ]
+    }, {
+      "@type" : "group",
+      "name" : "L0/M2",
+      "nested" : [ {
+        "@type" : "item",
+        "name" : "io/InputStrategy.java"
+      } ]
+    } ]
+  }, {
+    "@type" : "group",
+    "name" : "L1",
+    "nested" : [ {
+      "@type" : "group",
+      "name" : "L1/M0",
+      "nested" : [ {
+        "@type" : "item",
+        "name" : "textparsing/DelimTextParser.java"
+      } ]
+    } ]
+  }, {
+    "@type" : "group",
+    "name" : "L2",
+    "nested" : [ {
+      "@type" : "group",
+      "name" : "L2/M0",
+      "nested" : [ {
+        "@type" : "group",
+        "name" : "L2/M0/L0",
+        "nested" : [ {
+          "@type" : "group",
+          "name" : "L2/M0/L0/M0",
+          "nested" : [ {
+            "@type" : "item",
+            "name" : "sorting/SortingStrategy.java"
+          } ]
+        } ]
+      }, {
+        "@type" : "group",
+        "name" : "L2/M0/L1",
+        "nested" : [ {
+          "@type" : "group",
+          "name" : "L2/M0/L1/M0",
+          "nested" : [ {
+            "@type" : "item",
+            "name" : "sentenceprocessing/AbstractSentencesProcessor.java"
+          } ]
+        } ]
+      }, {
+        "@type" : "group",
+        "name" : "L2/M0/L2",
+        "nested" : [ {
+          "@type" : "group",
+          "name" : "L2/M0/L2/M0",
+          "nested" : [ {
+            "@type" : "item",
+            "name" : "sorting/ReverseAlphabeticSorter.java"
+          } ]
+        }, {
+          "@type" : "group",
+          "name" : "L2/M0/L2/M1",
+          "nested" : [ {
+            "@type" : "item",
+            "name" : "sorting/AlphabeticSorter.java"
+          } ]
+        }, {
+          "@type" : "group",
+          "name" : "L2/M0/L2/M2",
+          "nested" : [ {
+            "@type" : "item",
+            "name" : "sentenceprocessing/KeywordSearch.java"
+          } ]
+        }, {
+          "@type" : "group",
+          "name" : "L2/M0/L2/M3",
+          "nested" : [ {
+            "@type" : "item",
+            "name" : "sentenceprocessing/KWICProcessor.java"
+          } ]
+        }, {
+          "@type" : "group",
+          "name" : "L2/M0/L2/M4",
+          "nested" : [ {
+            "@type" : "item",
+            "name" : "sentenceprocessing/IndexGeneration.java"
+          } ]
+        }, {
+          "@type" : "group",
+          "name" : "L2/M0/L2/M5",
+          "nested" : [ {
+            "@type" : "item",
+            "name" : "io/TxtOutput.java"
+          } ]
+        }, {
+          "@type" : "group",
+          "name" : "L2/M0/L2/M6",
+          "nested" : [ {
+            "@type" : "item",
+            "name" : "io/CommandsAsStringListInput.java"
+          } ]
+        }, {
+          "@type" : "group",
+          "name" : "L2/M0/L2/M7",
+          "nested" : [ {
+            "@type" : "item",
+            "name" : "io/Commands.java"
+          }, {
+            "@type" : "item",
+            "name" : "Main.java"
+          } ]
+        }, {
+          "@type" : "group",
+          "name" : "L2/M0/L2/M8",
+          "nested" : [ {
+            "@type" : "item",
+            "name" : "OptionReader.java"
+          }, {
+            "@type" : "item",
+            "name" : "KWICObjectLoader.java"
+          } ]
+        } ]
+      }, {
+        "@type" : "group",
+        "name" : "L2/M0/Control",
+        "nested" : [ {
+          "@type" : "item",
+          "name" : "KWICDriver.java"
+        } ]
+      } ]
+    }, {
+      "@type" : "group",
+      "name" : "L2/M1",
+      "nested" : [ {
+        "@type" : "item",
+        "name" : "io/ConsoleOutput.java"
+      } ]
+    }, {
+      "@type" : "group",
+      "name" : "L2/M2",
+      "nested" : [ {
+        "@type" : "item",
+        "name" : "io/ConsoleInput.java"
+      } ]
+    }, {
+      "@type" : "group",
+      "name" : "L2/M3",
+      "nested" : [ {
+        "@type" : "item",
+        "name" : "fileparsing/PlaintextFileParser.java"
+      } ]
+    }, {
+      "@type" : "group",
+      "name" : "L2/M4",
+      "nested" : [ {
+        "@type" : "item",
+        "name" : "fileparsing/CsvFileParser.java"
+      } ]
+    } ]
+  } ]
+}
