@@ -5,7 +5,7 @@ set -e
 set -x
     
 # ---- Run ----
-echo "Running KWIC Program"
+echo "Running KWIC Client"
 java -jar KWICClient.jar "$@"
 
 # ---- Run Alternative ----
