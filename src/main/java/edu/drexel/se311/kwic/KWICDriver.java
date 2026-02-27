@@ -49,10 +49,6 @@ public class KWICDriver {
     
     }
 
-    private void displayUsage() {
-        outputStrategy.display("Usage: (java exec) <kwic-processing|keyword-search|index-generation> <config-filename>");
-    }
-
     private AbstractSentencesProcessor getProcessorFromCommand(String command) {
         AbstractSentencesProcessor processor;
         if (Commands.KWIC.equals(command)) {
@@ -61,7 +57,6 @@ public class KWICDriver {
             String commandKeyword = command.substring(Commands.KEYWORD_SEARCH.length()).trim();
             if (commandKeyword.isEmpty()) {
                 outputStrategy.display("Keyword search requires a keyword.");
-                displayUsage();
                 return null;
             }
             processor = new KeywordSearch(this.lines, this.filterWords, this.trivialWords, this.sortingStrategy, commandKeyword);
@@ -69,7 +64,6 @@ public class KWICDriver {
             processor = new IndexGeneration(this.lines, this.filterWords, this.trivialWords, this.sortingStrategy);
         } else {
             outputStrategy.display("Invalid command.");
-            displayUsage();
             return null;
         }
         return processor;
@@ -89,7 +83,7 @@ public class KWICDriver {
             }
             AbstractSentencesProcessor processor = this.getProcessorFromCommand(command);
             if (processor == null) {
-                break;
+                continue;
             }
             
             List<String> output = processor.getProcessedOutput();

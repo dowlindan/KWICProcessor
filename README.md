@@ -72,10 +72,23 @@ java -jar KWICClient.jar "$@"
 - Removed unnecessary concrete class in textparsing
 
 ## HW3 Documentation
+
+- Moved OptionReader classes to own package
+- Added KWICInputStream InputStrategy for server
+- Added KWICOutputStream output strategy for server
+- Added KWICProtocolMessage to package messages before sending
+- Added ServerRequestTracker to track sever requests across all threads
+- Made TxtOutput strategy always append
+- Added KWICClient class
+- Removed parsing responsibility from KWICDriver to KWICServer
+- Added KWICRequestHandler thread extender which server delegates to
+- Added KWICServer class
+- Removed main
+
 ### Submissions
 
-- UML is in PlantUML.md
-- DSM outputs are in ./hw1 and ./hw2
+- UML diagrams are in ./uml_diagrams
+- DSM outputs are in ./hw1, ./hw2, and ./hw3
 
 HW1
 M Score: 54.53%

@@ -35,8 +35,6 @@ public class KWICServer {
             e.printStackTrace();
             System.exit(1);
         }
-        
-
     }
     
 

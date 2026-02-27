@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 
 public class KWICOutputStream extends OutputStrategy {
@@ -24,7 +25,11 @@ public class KWICOutputStream extends OutputStrategy {
     @Override
     public void display(String outputString) {
         try {
-            writer.write(outputString);
+            List<String> outputStrings = new ArrayList<>();
+            outputStrings.add(outputString);
+            KWICProtocolMessage message = new KWICProtocolMessage(outputStrings);
+
+            writer.write(message.toMessageString());
             writer.newLine();
             writer.flush();
         } catch (Exception e) {
@@ -37,7 +42,13 @@ public class KWICOutputStream extends OutputStrategy {
         KWICProtocolMessage message = new KWICProtocolMessage(outputStrings);
         System.out.println("Sending response to client:\n" + message.toMessageString());
         logKeywordSearch(message);
-        this.display(message.toMessageString());
+        try {
+            writer.write(message.toMessageString());
+            writer.newLine();
+            writer.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void logKeywordSearch(KWICProtocolMessage message) {

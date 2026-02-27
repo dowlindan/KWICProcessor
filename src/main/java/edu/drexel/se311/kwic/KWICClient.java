@@ -88,7 +88,6 @@ public class KWICClient {
                         output.display("Server closed connection.");
                         break;
                     }
-                    System.out.println("Received response line: " + responseLine);
                     serverResponse.add(responseLine);
                 }
                 output.display(serverResponse);
@@ -110,6 +109,5 @@ public class KWICClient {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
     }
 }
